@@ -15,6 +15,7 @@ public class PlayerAttributes : MonoBehaviour
     public float jumpPower = 8f;
     public bool canMove = true;
     public bool grounded = false;
+    public bool platformed = false;
 
     void Start()
     {

@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else animator.SetBool("x", false);
 
+        AnimatorSetters();
+    }
+
+    void AnimatorSetters()
+    {
         // If the player is moving vertically
         if (directionY != 0) animator.SetBool("y", true);
         else animator.SetBool("y", false);
@@ -48,11 +53,19 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        attributes.grounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        if (!attributes.platformed) attributes.grounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
 
         // Start at 0
         body.linearVelocityX = attributes.speed * directionX;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (body.linearVelocityY < 0 && collision.collider.gameObject.layer == LayerMask.NameToLayer("Platforms")) attributes.platformed = true;
+
+
+    }
+}
 
     #region Actions
     void ActionJump(InputAction.CallbackContext obj)
