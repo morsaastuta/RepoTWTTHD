@@ -10,7 +10,7 @@ public class CameraBehaviour : MonoBehaviour
         
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         transform.position = Vector2.Lerp(transform.position, player.position, lerpFactor);
         transform.position = new Vector3(transform.position.x, transform.position.y+0.5f, -10);
