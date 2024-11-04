@@ -227,7 +227,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -249,7 +249,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -271,7 +271,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -293,7 +293,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -315,7 +315,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -337,7 +337,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -359,7 +359,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -381,7 +381,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 896
-        y: 128
+        y: 384
         width: 128
         height: 128
       alignment: 7
@@ -403,7 +403,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 256
         width: 128
         height: 128
       alignment: 7
@@ -425,7 +425,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 256
         width: 128
         height: 128
       alignment: 7
@@ -447,7 +447,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
+        y: 256
         width: 128
         height: 128
       alignment: 7
@@ -469,7 +469,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 0
+        y: 256
         width: 128
         height: 128
       alignment: 7
@@ -491,7 +491,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 256
         width: 128
         height: 128
       alignment: 7
@@ -513,7 +513,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 0
+        y: 256
         width: 128
         height: 128
       alignment: 7
@@ -526,6 +526,94 @@ TextureImporter:
       bones: []
       spriteID: 66ebb0783bb451f10800000000000000
       internalID: 2239779624123612774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avii_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de9c195dd8892ea4e94fa04d808f0f29
+      internalID: -1380397654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avii_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8a4577e9a1066540a9de27392c2a7b0
+      internalID: -735044236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avii_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63ccc527aef2a6408da2f3b4ace6b45
+      internalID: -700644352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: avii_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0473bbc215b857f449904ffcc6f8759f
+      internalID: -817131815
       vertices: []
       indices: 
       edges: []
@@ -550,6 +638,10 @@ TextureImporter:
       avii_11: -8860825219347644024
       avii_12: 1298160050710176665
       avii_13: 2239779624123612774
+      avii_14: -1380397654
+      avii_15: -735044236
+      avii_16: -700644352
+      avii_17: -817131815
       avii_2: -2689735152228973454
       avii_3: 1740406378169363599
       avii_4: 3526053813097924221

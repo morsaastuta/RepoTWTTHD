@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,18 +18,18 @@ public class ModProjectile : MonoBehaviour
 
     void Update()
     {
-        if (modBase.active)
-        {
-            shoot.action.performed += ActionShoot;
-        }
+        shoot.action.performed += ActionShoot;
     }
 
     void ActionShoot(InputAction.CallbackContext obj)
     {
-        GameObject b = Instantiate(bullet);
+        if (modBase.DefaultConditions())
+        {
+            GameObject b = Shortcuts.InstantiateCast(gameObject, Instantiate(bullet), true);
 
-        b.transform.position = transform.position;
+            b.transform.position = transform.position;
 
-        b.GetComponent<BulletController>().SetObjective(aim.transform);
+            b.GetComponent<BulletBehaviour>().SetObjective(aim.transform);
+        }
     }
 }

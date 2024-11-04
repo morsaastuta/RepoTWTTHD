@@ -4,15 +4,20 @@ public class ModuleBase : MonoBehaviour
 {
     public bool active = true;
 
-    PlayerAttributes attributes;
+    PlayerBehaviour attributes;
 
     void Start()
     {
-        attributes = GetComponentInParent<PlayerAttributes>();
+        attributes = GetComponentInParent<PlayerBehaviour>();
     }
 
     void Update()
     {
         
+    }
+
+    public bool DefaultConditions()
+    {
+        return active && attributes.entityCode.FreeVM();
     }
 }
