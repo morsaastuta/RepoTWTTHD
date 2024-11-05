@@ -16,8 +16,8 @@ public class LeakMemoBehaviour : FoeBehaviour
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
+        SkipCollision(collision);
 
-        if (Shortcuts.CollidesWithLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(0, 10, transform.position);
+        if (Shortcuts.CollidesWithLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 10, transform.position);
     }
 }

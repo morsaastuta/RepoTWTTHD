@@ -470,7 +470,6 @@
 "Assets/Scripts/Entity.cs"
 "Assets/Scripts/Glossary.cs"
 "Assets/Scripts/Shortcuts.cs"
-"Assets/Scripts/StaminaController.cs"
 "Assets/Scripts/TypedConcept.cs"
 -langversion:9.0
 /deterministic

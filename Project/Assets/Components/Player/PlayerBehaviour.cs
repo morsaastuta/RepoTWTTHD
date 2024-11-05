@@ -79,8 +79,6 @@ public class PlayerBehaviour : EntityBehaviour
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-
-        if (Shortcuts.CollidesWithLayer(collision, "Foe")) ReceiveDamage(5, 0, collision.collider.GetComponent<Transform>().position);
     }
 
     void AnimatorSetters()

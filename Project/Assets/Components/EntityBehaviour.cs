@@ -29,7 +29,7 @@ public class EntityBehaviour : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (entityCode.AllocatedVM()) entityCode.ClearVM(0.01f);
+        if (entityCode.AllocatedVM()) entityCode.ClearVM(Time.deltaTime * 1f);
 
         if (flinchTimer > 0)
         {

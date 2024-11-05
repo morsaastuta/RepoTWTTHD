@@ -27,4 +27,16 @@ public class FoeBehaviour : EntityBehaviour
             else if (!right && Physics2D.Raycast(transform.position + new Vector3(0, 1f, 0), Vector2.left, 0.9f, LayerMask.GetMask("Ground", "Box"))) right = true;
         } 
     }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if (Shortcuts.CollidesWithLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 0, transform.position);
+    }
+
+    protected void SkipCollision(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+    }
 }
