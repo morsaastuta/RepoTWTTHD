@@ -18,6 +18,6 @@ public class ModuleBase : MonoBehaviour
 
     public bool DefaultConditions()
     {
-        return active && attributes.entityCode.FreeVM();
+        return active && attributes.entityCode.CanAllocateVM();
     }
 }

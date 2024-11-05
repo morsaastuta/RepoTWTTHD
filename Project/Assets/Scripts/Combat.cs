@@ -4,14 +4,18 @@ using Glossary;
 
 public static class Combat
 {
-    public static void Inflict(Ability cast, Entity source, Entity target)
+    public static void Inflict(CastBehaviour castBody, Entity source, EntityBehaviour target)
     {
+        Debug.Log("inflicted");
+        Cast cast = castBody.GetCast();
         cast.type = source.type;
 
-        target.AllocatePM(CalculateCast(cast, target).apm);
+        cast = CalculateCast(cast, target.entityCode);
+
+        target.ReceiveDamage(cast.apm, cast.avm, castBody.transform.position);
     }
 
-    static Ability CalculateCast(Ability cast, Entity target)
+    static Cast CalculateCast(Cast cast, Entity target)
     {
         // If Type is equal, clear PM
         if (cast.type.Equals(target.type)) cast.apm = -Mathf.Abs(cast.apm);

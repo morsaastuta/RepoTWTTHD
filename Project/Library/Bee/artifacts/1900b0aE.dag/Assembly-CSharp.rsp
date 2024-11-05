@@ -444,6 +444,7 @@
 "Assets/Components/EntityBehaviour.cs"
 "Assets/Components/Foes/Bug/BugMemoBehaviour.cs"
 "Assets/Components/Foes/FoeBehaviour.cs"
+"Assets/Components/Foes/LeakMemoBehaviour.cs"
 "Assets/Components/Interactable/DisintegrableBox.cs"
 "Assets/Components/Manager/GameManager.cs"
 "Assets/Components/Manager/LevelManager.cs"
@@ -457,7 +458,7 @@
 "Assets/Components/UI/MainMenuController.cs"
 "Assets/Components/UI/UIButtonController.cs"
 "Assets/Scripts/Abilities/Bullet.cs"
-"Assets/Scripts/Ability.cs"
+"Assets/Scripts/Cast.cs"
 "Assets/Scripts/Combat.cs"
 "Assets/Scripts/Entities/Foe.cs"
 "Assets/Scripts/Entities/Foes/BugExo.cs"
@@ -469,6 +470,7 @@
 "Assets/Scripts/Entity.cs"
 "Assets/Scripts/Glossary.cs"
 "Assets/Scripts/Shortcuts.cs"
+"Assets/Scripts/StaminaController.cs"
 "Assets/Scripts/TypedConcept.cs"
 -langversion:9.0
 /deterministic

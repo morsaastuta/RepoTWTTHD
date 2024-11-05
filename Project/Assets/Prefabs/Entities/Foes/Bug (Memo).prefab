@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5517984781803582584}
   - component: {fileID: 5346537775430979085}
   - component: {fileID: 2887916342668433463}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Projection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 3651491776250383670}
   - component: {fileID: 8407677456348064473}
   - component: {fileID: 1055093156104805617}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Bug (Memo)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981c776fda3c16148b56b9e69b94a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bypassGravity: 0
   grounded: 0
 --- !u!50 &8407677456348064473
 Rigidbody2D:

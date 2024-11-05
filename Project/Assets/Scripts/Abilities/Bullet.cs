@@ -1,13 +1,12 @@
 using System;
 using Unity.VisualScripting;
 
-public class Bullet : Ability
+public class Bullet : Cast
 {
-    public Bullet(Type source, bool isClear)
+    public Bullet()
     {
-        SetInteractions(source, isClear);
-
-        avm = 5;
+        isClear = false;
+        cost = 5;
         apm = 1;
     }
 }

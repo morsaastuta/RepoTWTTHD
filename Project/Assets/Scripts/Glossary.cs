@@ -11,4 +11,9 @@ namespace Glossary
         // Bia
         Chop, Grapple
     }
+
+    public enum State
+    {
+        Overloaded, Infected, Disconnected
+    }
 }

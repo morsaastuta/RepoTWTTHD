@@ -57,7 +57,7 @@ public class PlayerBehaviour : EntityBehaviour
     {
         base.Update();
 
-        if (canMove) directionX = move.action.ReadValue<Vector2>().x;
+        if (!entityCode.HasState(State.Disconnected)) directionX = move.action.ReadValue<Vector2>().x;
         else directionX = 0;
 
         directionY = body.linearVelocityY;
@@ -74,6 +74,13 @@ public class PlayerBehaviour : EntityBehaviour
         else animator.SetBool("x", false);
 
         AnimatorSetters();
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if (Shortcuts.CollidesWithLayer(collision, "Foe")) ReceiveDamage(5, 0, collision.collider.GetComponent<Transform>().position);
     }
 
     void AnimatorSetters()

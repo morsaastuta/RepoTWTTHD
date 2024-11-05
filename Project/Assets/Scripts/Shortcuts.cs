@@ -20,8 +20,8 @@ public static class Shortcuts
 
     public static GameObject InstantiateCast(GameObject source, GameObject cast, bool fromPlayer)
     {
-        if (fromPlayer) cast.GetComponent<CastBehaviour>().SetSource(source.GetComponentInParent<PlayerBehaviour>().entityCode);
-        else cast.GetComponent<CastBehaviour>().SetSource(source.GetComponent<FoeBehaviour>().entityCode);
+        if (fromPlayer) cast.GetComponent<CastBehaviour>().SetSource(source.GetComponentInParent<EntityBehaviour>().entityCode);
+        else cast.GetComponent<CastBehaviour>().SetSource(source.GetComponent<EntityBehaviour>().entityCode);
 
         return cast;
     }

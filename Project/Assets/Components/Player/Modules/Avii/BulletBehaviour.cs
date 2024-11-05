@@ -7,14 +7,15 @@ public class BulletBehaviour : CastBehaviour
 
     override protected void Start()
     {
-        isClear = false;
-        cast = new Bullet(source.GetType().BaseType, isClear);
+        cast = new Bullet();
+
         base.Start();
     }
 
     override protected void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+
         if (Shortcuts.CollidesWithLayer(collision, "Ground") || Shortcuts.CollidesWithLayer(collision, "Foe") || Shortcuts.CollidesWithLayer(collision, "Box") || Shortcuts.CollidesWithLayer(collision, "Platform")) Destroy(gameObject);
     }
 
