@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 116547649467951625}
   - component: {fileID: 4543364383968055604}
   m_Layer: 10
-  m_Name: Disintegrable Box
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

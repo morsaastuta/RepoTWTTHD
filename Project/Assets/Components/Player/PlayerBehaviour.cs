@@ -1,6 +1,7 @@
 using UnityEngine;
 using Glossary;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerBehaviour : EntityBehaviour
 {
@@ -15,12 +16,17 @@ public class PlayerBehaviour : EntityBehaviour
 
     // Attributes
     int playerID;
+    CanvasController canvasController;
     [SerializeField] GameObject hud;
 
     #region Input references
     [SerializeField] InputActionReference move;
     [SerializeField] InputActionReference jump;
+    [SerializeField] InputActionReference interact;
     #endregion
+
+    // Input carries
+    bool interactCarry;
 
     // Movement
     public bool canMove = true;
@@ -29,10 +35,13 @@ public class PlayerBehaviour : EntityBehaviour
     {
         base.Start();
 
+        // Player setup
         playerID = 1;
         entityCode = new Avii();
 
-        GameObject newHUD = Instantiate(hud, GameObject.Find("Canvas").transform);
+        // Canvas/HUD setup
+        canvasController = GameObject.Find("Canvas").GetComponent<CanvasController>();
+        GameObject newHUD = Instantiate(hud, canvasController.transform);
         newHUD.transform.localPosition = new(-Screen.width / 2 + playerID * Screen.width / 5 - 256, Screen.height / 2 - 128);
         newHUD.GetComponent<HUDController>().SetPlayer(this);
         
@@ -57,21 +66,27 @@ public class PlayerBehaviour : EntityBehaviour
     {
         base.Update();
 
-        if (!entityCode.HasState(State.Disconnected)) directionX = move.action.ReadValue<Vector2>().x;
-        else directionX = 0;
+        if (Shortcuts.Pressed(interact)) interactCarry = true;
 
-        directionY = body.linearVelocityY;
-
-        jump.action.performed += ActionJump;
-
-        // If the player is moving horizontally
-        if (directionX != 0)
+        if (!entityCode.HasState(State.Disconnected))
         {
-            animator.SetBool("x", true);
-            if (directionX < 0) transform.localScale = new Vector2(-1, 1);
-            else if (directionX > 0) transform.localScale = new Vector2(1, 1);
+            directionX = move.action.ReadValue<Vector2>().x;
+
+            if (Shortcuts.Pressed(jump)) ActionJump();
+
+
+            // If the player is moving horizontally
+            if (directionX != 0)
+            {
+                animator.SetBool("x", true);
+                if (directionX < 0) transform.localScale = new Vector2(-1, 1);
+                else if (directionX > 0) transform.localScale = new Vector2(1, 1);
+            }
+            else animator.SetBool("x", false);
         }
-        else animator.SetBool("x", false);
+        else directionX = 0;
+        
+        directionY = body.linearVelocityY;
 
         AnimatorSetters();
     }
@@ -79,6 +94,26 @@ public class PlayerBehaviour : EntityBehaviour
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (interactCarry) {
+            interactCarry = false;
+            if (Shortcuts.CollidesWithLayer(collider, "Signpost"))
+            {
+                if (!entityCode.HasState(State.Disconnected))
+                {
+                    ActionInteract(collider);
+                    EmergencyStop(true);
+                }
+                else if (canvasController.GetTextHUD().NextString())
+                {
+                    entityCode.RemoveState(State.Disconnected);
+                    EmergencyStop(false);
+                }
+            }
+        }
     }
 
     void AnimatorSetters()
@@ -96,13 +131,19 @@ public class PlayerBehaviour : EntityBehaviour
     }
 
     #region Actions
-    void ActionJump(InputAction.CallbackContext obj)
+    void ActionJump()
     {
         if (grounded)
         {
             grounded = false;
             body.linearVelocityY = entityCode.jumpPower;
         }
+    }
+
+    void ActionInteract(Collider2D collider)
+    {
+        canvasController.GetTextHUD().ReceiveMessage(collider.GetComponent<SignpostBehaviour>().content);
+        entityCode.AddState(State.Disconnected);
     }
     #endregion
 }

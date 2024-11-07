@@ -246,8 +246,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1055093156104805617
 BoxCollider2D:
@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ea87646017058489d53a45ba77ba23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bypassGravity: 0
   grounded: 0
   mod_projectile: {fileID: 649964089735542090, guid: 877b5b23f05b11649a3220968d37f7e2, type: 3}
   mod_shield: {fileID: 0}
@@ -316,4 +317,5 @@ MonoBehaviour:
   hud: {fileID: 4591300460825122711, guid: f050b732697da1340971a4a11393123c, type: 3}
   move: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   jump: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  interact: {fileID: -456525165139817274, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   canMove: 1

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DisintegrableBox : MonoBehaviour
+public class BoxBehaviour : MonoBehaviour
 {
     [SerializeField] float durability = 1;
     [SerializeField] int height = 1;

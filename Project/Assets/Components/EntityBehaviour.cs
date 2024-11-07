@@ -64,6 +64,20 @@ public class EntityBehaviour : MonoBehaviour
         if (!entityCode.HasState(State.Disconnected)) body.linearVelocityX = entityCode.speed * directionX;
     }
 
+    protected void EmergencyStop(bool enter)
+    {
+        if (enter)
+        {
+            body.linearVelocityX = 0;
+            body.linearVelocityY = 0;
+            body.gravityScale = 0;
+        }
+        else
+        {
+            body.gravityScale = 1;
+        }
+    }
+
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
     }
