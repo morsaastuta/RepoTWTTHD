@@ -17,7 +17,7 @@ TagManager:
   - Cast
   - Box
   - Signpost
-  - 
+  - Glow
   - 
   - 
   - 
@@ -44,11 +44,17 @@ TagManager:
   - name: Back
     uniqueID: 1195293047
     locked: 0
+  - name: Under
+    uniqueID: 89398797
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Fore
+  - name: Over
     uniqueID: 1766735731
+    locked: 0
+  - name: Fore
+    uniqueID: 438479877
     locked: 0
   - name: Top
     uniqueID: 3650908191

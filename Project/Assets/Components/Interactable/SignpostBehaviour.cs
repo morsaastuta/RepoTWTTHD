@@ -10,29 +10,27 @@ public class SignpostBehaviour : MonoBehaviour
 
     void Start()
     {
-        signAnimator.SetTrigger("off");
-        textAnimator.SetTrigger("off");
+        signAnimator.SetBool("on", false);
+        textAnimator.SetBool("on", false);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
-            signAnimator.SetTrigger("on");
-            textAnimator.SetTrigger("on");
+            signAnimator.SetBool("on", true);
+            textAnimator.SetBool("on", true);
         }
     }
 
-    /*
     void OnTriggerExit2D(Collider2D collider)
     {
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
-            signAnimator.SetTrigger("off");
-            textAnimator.SetTrigger("off");
+            signAnimator.SetBool("on", false);
+            textAnimator.SetBool("on", false);
         }
     }
-    */
 
     public bool IsOn()
     {

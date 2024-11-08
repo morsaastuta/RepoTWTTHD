@@ -1,12 +1,12 @@
 using System;
 using Unity.VisualScripting;
 
-public class Bullet : Cast
+public class Projectile : Cast
 {
-    public Bullet()
+    public Projectile()
     {
         isClear = false;
-        cost = 5;
+        cost = 3;
         apm = 1;
     }
 }

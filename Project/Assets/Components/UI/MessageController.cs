@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MessageController : MonoBehaviour
@@ -11,8 +12,18 @@ public class MessageController : MonoBehaviour
     List<string> content = new();
     int index = 0;
 
+    #region Input references
+    [SerializeField] InputActionReference interact;
+    #endregion
+
+    void Update()
+    {
+        if (Shortcuts.Pressed(interact) && index > 0) NextString();
+    }
+
     public void ReceiveMessage(List<string> message)
     {
+        GameObject.Find("Player").GetComponent<PlayerBehaviour>().EnterInteraction(true);
         content.Clear();
         content.AddRange(message);
         index = 0;
@@ -40,5 +51,6 @@ public class MessageController : MonoBehaviour
         root.SetActive(false);
         index = 0;
         content.Clear();
+        GameObject.Find("Player").GetComponent<PlayerBehaviour>().EnterInteraction(false);
     }
 }

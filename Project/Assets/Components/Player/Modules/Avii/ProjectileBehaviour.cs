@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class BulletBehaviour : CastBehaviour
+public class ProjectileBehaviour : CastBehaviour
 {
     float speed = 30f;
     int timer = 200;
 
     override protected void Start()
     {
-        cast = new Bullet();
+        cast = new Projectile();
 
         base.Start();
     }

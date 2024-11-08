@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class BoxBehaviour : MonoBehaviour
+public class ProtectedBoxBehaviour : MonoBehaviour
 {
-    [SerializeField] float durability = 1;
+    [SerializeField] WeakSideBehaviour weakSide;
+
+    [SerializeField] public float durability = 1;
     [SerializeField] int height = 1;
     [SerializeField] int width = 1;
 
@@ -14,6 +17,8 @@ public class BoxBehaviour : MonoBehaviour
         GetComponent<Animator>().SetInteger("h", height);
         GetComponent<Animator>().SetInteger("w", width);
         GetComponent<BoxCollider2D>().size = new(width,height);
+        weakSide.GetComponent<BoxCollider2D>().size = new(.05f, height-0.1f);
+        weakSide.GetComponent<BoxCollider2D>().offset = new(0.475f + ((width - 1) * 0.5f), 0);
     }
 
     void Update()
@@ -25,14 +30,9 @@ public class BoxBehaviour : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void Damage()
     {
-        if (Shortcuts.CollidesWithLayer(collision, "Cast"))
-        {
-            durability -= collision.collider.GetComponent<CastBehaviour>().GetCast().apm;
-            GetComponent<SpriteRenderer>().color = new(0,1,1,1);
-            whiteTimer = whiteTimerMax;
-            if (durability <= 0) Destroy(gameObject);
-        }
+        whiteTimer = whiteTimerMax;
+        if (durability <= 0) Destroy(gameObject);
     }
 }

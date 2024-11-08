@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ModuleBase : MonoBehaviour
+public class ModuleBaseBehaviour : MonoBehaviour
 {
     public bool active = true;
 

@@ -25,8 +25,10 @@ public class PlayerBehaviour : EntityBehaviour
     [SerializeField] InputActionReference interact;
     #endregion
 
-    // Input carries
+    // Interaction
     bool interactCarry;
+    int timerMax = 30;
+    int timer;
 
     // Movement
     public bool canMove = true;
@@ -66,14 +68,25 @@ public class PlayerBehaviour : EntityBehaviour
     {
         base.Update();
 
-        if (Shortcuts.Pressed(interact)) interactCarry = true;
-
         if (!entityCode.HasState(State.Disconnected))
         {
+            // Movement input
             directionX = move.action.ReadValue<Vector2>().x;
 
+            // Jump input
             if (Shortcuts.Pressed(jump)) ActionJump();
 
+            // Interaction input
+            if (Shortcuts.Pressed(interact))
+            {
+                timer = timerMax;
+                interactCarry = true;
+            }
+            if (timer > 0)
+            {
+                timer--;
+                if (timer <= 0) interactCarry = false;
+            }
 
             // If the player is moving horizontally
             if (directionX != 0)
@@ -99,20 +112,12 @@ public class PlayerBehaviour : EntityBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
         if (interactCarry) {
+
             interactCarry = false;
-            if (Shortcuts.CollidesWithLayer(collider, "Signpost"))
-            {
-                if (!entityCode.HasState(State.Disconnected))
-                {
-                    ActionInteract(collider);
-                    EmergencyStop(true);
-                }
-                else if (canvasController.GetTextHUD().NextString())
-                {
-                    entityCode.RemoveState(State.Disconnected);
-                    EmergencyStop(false);
-                }
-            }
+
+            timer = 0;
+
+            if (Shortcuts.CollidesWithLayer(collider, "Signpost") && !entityCode.HasState(State.Disconnected)) ActionInteract(collider);
         }
     }
 
@@ -130,6 +135,20 @@ public class PlayerBehaviour : EntityBehaviour
         animator.SetFloat("yDir", directionY);
     }
 
+    public void EnterInteraction(bool enter)
+    {
+        if (enter)
+        {
+            entityCode.AddState(State.Disconnected);
+            EmergencyStop(true);
+        }
+        else
+        {
+            entityCode.RemoveState(State.Disconnected);
+            EmergencyStop(false);
+        }
+    }
+
     #region Actions
     void ActionJump()
     {
@@ -143,7 +162,6 @@ public class PlayerBehaviour : EntityBehaviour
     void ActionInteract(Collider2D collider)
     {
         canvasController.GetTextHUD().ReceiveMessage(collider.GetComponent<SignpostBehaviour>().content);
-        entityCode.AddState(State.Disconnected);
     }
     #endregion
 }

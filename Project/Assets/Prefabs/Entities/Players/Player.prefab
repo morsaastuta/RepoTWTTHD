@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 5517984781803582584}
   - component: {fileID: 5346537775430979085}
   - component: {fileID: 2887916342668433463}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Projection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.5}
+  m_Offset: {x: 0, y: 1.4816759}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -293,7 +293,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.52, y: 2.96}
+  m_Size: {x: 0.52, y: 2.9233518}
   m_EdgeRadius: 0.02
 --- !u!114 &8473761459175836151
 MonoBehaviour:

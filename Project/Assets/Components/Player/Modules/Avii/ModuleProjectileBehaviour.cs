@@ -2,18 +2,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ModProjectile : MonoBehaviour
+public class ModuleProjectileBehaviour : MonoBehaviour
 {
-    ModuleBase modBase;
+    ModuleBaseBehaviour modBase;
 
     [SerializeField] GameObject aim;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject projectile;
 
     [SerializeField] InputActionReference shoot;
 
     void Start()
     {
-        modBase = GetComponentInParent<ModuleBase>();
+        modBase = GetComponentInParent<ModuleBaseBehaviour>();
     }
 
     void Update()
@@ -25,11 +25,11 @@ public class ModProjectile : MonoBehaviour
     {
         if (modBase.DefaultConditions())
         {
-            GameObject b = Shortcuts.InstantiateCast(gameObject, Instantiate(bullet), true);
+            GameObject b = Shortcuts.InstantiateCast(gameObject, Instantiate(projectile), true);
 
             b.transform.position = transform.position;
 
-            b.GetComponent<BulletBehaviour>().SetObjective(aim.transform);
+            b.GetComponent<ProjectileBehaviour>().SetObjective(aim.transform);
         }
     }
 }
