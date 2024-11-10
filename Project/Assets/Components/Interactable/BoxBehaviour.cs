@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BoxBehaviour : MonoBehaviour
 {
+    [SerializeField] Animator box;
+
     [SerializeField] float durability = 1;
     [SerializeField] int height = 1;
     [SerializeField] int width = 1;
@@ -11,8 +13,8 @@ public class BoxBehaviour : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<Animator>().SetInteger("h", height);
-        GetComponent<Animator>().SetInteger("w", width);
+        box.SetInteger("h", height);
+        box.SetInteger("w", width);
         GetComponent<BoxCollider2D>().size = new(width,height);
     }
 

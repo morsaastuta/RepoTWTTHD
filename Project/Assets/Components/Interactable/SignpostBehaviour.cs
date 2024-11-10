@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class SignpostBehaviour : MonoBehaviour
 {
+    [Header("Message")]
+    [SerializeField] public List<string> content;
+
+    [Header("References")]
     [SerializeField] Animator signAnimator;
     [SerializeField] Animator textAnimator;
+
+    [Header("Resources")]
     [SerializeField] AnimationClip checkClip;
-    [SerializeField] public List<string> content;
 
     void Start()
     {

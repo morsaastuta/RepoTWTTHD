@@ -4,20 +4,21 @@ using System.Collections.Generic;
 
 public class ModuleChipBehaviour : MonoBehaviour
 {
+    [Header("Module")]
     [SerializeField] Mod mod;
-    [SerializeField] SpriteRenderer icon;
-    List<string> message = new();
-    GameObject modObj;
 
-    #region MODULES
-    [SerializeField] GameObject projectileMod;
-    #endregion
+    [Header("References")]
+    [SerializeField] SpriteRenderer icon;
 
     #region SPRITES
+    [Header("Resources")]
     [SerializeField] Sprite projectileSpr;
     [SerializeField] Sprite shieldSpr;
     [SerializeField] Sprite cleanseSpr;
     #endregion
+
+    List<string> message = new();
+    GameObject modObj;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class ModuleChipBehaviour : MonoBehaviour
             case Mod.Projectile:
                 icon.sprite = projectileSpr;
                 message.AddRange(new[]{"AVII obtained the PROJECTILE module.", "Use [Left Click] to shoot projectiles in the direction desired to destroy obstacles.", "VM usage: 3"});
-                modObj = projectileMod;
+                modObj = LevelManager.instance.M_projectile;
                 break;
             case Mod.Shield:
                 icon.sprite = shieldSpr;

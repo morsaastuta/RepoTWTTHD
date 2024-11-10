@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7160583591888688099}
+  - component: {fileID: 408199373697373049}
   - component: {fileID: 5603574008969734828}
   - component: {fileID: 6487096488439468106}
   - component: {fileID: 804370452942974121}
-  - component: {fileID: 408199373697373049}
   m_Layer: 5
   m_Name: UI button
   m_TagString: Untagged
@@ -40,6 +40,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 54}
   m_SizeDelta: {x: 324, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &408199373697373049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412234051976946839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3241723f50b5c438f37d79f21baa5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  off: {fileID: 4494619829604798120, guid: 34e0833344c0d664fad6db4423448724, type: 3}
+  hover: {fileID: -325850653, guid: 34e0833344c0d664fad6db4423448724, type: 3}
+  click: {fileID: 71359385, guid: 34e0833344c0d664fad6db4423448724, type: 3}
+  scale: 1
 --- !u!222 &5603574008969734828
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -122,21 +138,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &408199373697373049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2412234051976946839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3241723f50b5c438f37d79f21baa5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  off: {fileID: 4494619829604798120, guid: 34e0833344c0d664fad6db4423448724, type: 3}
-  hover: {fileID: -325850653, guid: 34e0833344c0d664fad6db4423448724, type: 3}
-  click: {fileID: 71359385, guid: 34e0833344c0d664fad6db4423448724, type: 3}
 --- !u!1 &2831048923399749468
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -104, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &768815846785084262
 CanvasRenderer:
@@ -229,8 +230,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -8,8 +8,9 @@ public class LeakMemo : Foe
 
         // Initialize values
         type = CType.Memo;
-        pm = 20f;
-        vm = 5f;
+        pm = 6f;
+        vm = 50f;
+        sm = 1.5f;
         speed = 0f;
         jumpPower = 0f;
         ClearMemory();
