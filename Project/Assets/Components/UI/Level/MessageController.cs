@@ -11,14 +11,17 @@ public class MessageController : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     List<string> content = new();
     int index = 0;
+    bool init = false;
 
-    void Update()
+    void LateUpdate()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.Interact) && index > 0) NextString();
+        if (Shortcuts.Pressed(LevelManager.instance.interact) && !init) NextString();
+        init = false;
     }
 
     public void ReceiveMessage(List<string> message)
     {
+        init = true;
         GameObject.Find("Player").GetComponent<PlayerBehaviour>().EnterInteraction(true);
         content.Clear();
         content.AddRange(message);
@@ -48,5 +51,10 @@ public class MessageController : MonoBehaviour
         index = 0;
         content.Clear();
         GameObject.Find("Player").GetComponent<PlayerBehaviour>().EnterInteraction(false);
+    }
+
+    public bool Active()
+    {
+        return index > 0;
     }
 }

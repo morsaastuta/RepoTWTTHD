@@ -14,7 +14,7 @@ public class LoadSceneController : MonoBehaviour
     [SerializeField] Button b2;
     [SerializeField] Button b3;
 
-    void Start()
+    void Awake()
     {
         b1.interactable = false;
         b2.interactable = false;

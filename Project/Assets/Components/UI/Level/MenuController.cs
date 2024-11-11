@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.Pause) && LevelManager.instance.canPause)
+        if (Shortcuts.Pressed(LevelManager.instance.pause) && LevelManager.instance.canPause)
         {
             if (!pane.activeInHierarchy) Open();
             else Close();

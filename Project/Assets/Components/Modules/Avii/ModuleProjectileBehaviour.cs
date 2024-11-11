@@ -17,7 +17,7 @@ public class ModuleProjectileBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.Attack)) ActionShoot();
+        if (Shortcuts.Pressed(LevelManager.instance.attack)) ActionShoot();
     }
 
     void ActionShoot()

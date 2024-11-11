@@ -1,85 +1,66 @@
 using UnityEngine;
 using Glossary;
 using UnityEngine.InputSystem;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public bool canPause = true;
+    public bool canPause;
 
     [Header("Global references")]
-    [SerializeField] int region;
-    [SerializeField] int scene;
-    [SerializeField] PlayerBehaviour player;
-    [SerializeField] Transform pointer;
+    [SerializeField] public int region;
+    [SerializeField] public int stage;
+    [SerializeField] public PlayerBehaviour player;
+    [SerializeField] public Transform pointer;
     [SerializeField] GameObject foeSource;
 
     [Header("Local references")]
-    [SerializeField] MenuController menuHUD;
-    [SerializeField] MessageController messageHUD;
+    [SerializeField] public MenuController menuHUD;
+    [SerializeField] public MessageController messageHUD;
 
     #region INPUT ACTION REFERENCES
     [Header("Inputs")]
-    [SerializeField] InputActionReference move;
-    [SerializeField] InputActionReference jump;
-    [SerializeField] InputActionReference interact;
-    [SerializeField] InputActionReference attack;
-    [SerializeField] InputActionReference pause;
+    [SerializeField] public InputActionReference move;
+    [SerializeField] public InputActionReference jump;
+    [SerializeField] public InputActionReference interact;
+    [SerializeField] public InputActionReference attack;
+    [SerializeField] public InputActionReference pause;
     #endregion
 
     #region MODULES
     [Header("Modules")]
-    [SerializeField] GameObject m_projectile;
-    [SerializeField] GameObject m_shield;
-    [SerializeField] GameObject m_cleanse;
-    #endregion
-
-    #region PROPERTIES
-    public int Region { get; }
-    public int Scene { get; }
-    public PlayerBehaviour Player { get; }
-    public Transform Pointer { get; set; }
-    public MenuController MenuHUD { get;  }
-    public MessageController MessageHUD { get; }
-    public GameObject M_projectile { get; }
-    public GameObject M_shield { get; }
-    public GameObject M_cleanse { get; }
-    public InputActionReference Move { get; set; }
-    public InputActionReference Jump { get; set; }
-    public InputActionReference Interact { get; set; }
-    public InputActionReference Attack { get; set; }
-    public InputActionReference Pause { get; set; }
+    [SerializeField] public GameObject m_projectile;
+    [SerializeField] public GameObject m_shield;
+    [SerializeField] public GameObject m_cleanse;
     #endregion
 
     float storedSM;
+    Vector3 playerVelOnPause;
+    List<Vector3> foeVelOnPause = new();
 
     void Awake()
     {
         instance = this;
-        Pointer = pointer;
-        Move = move;
-        Jump = jump;
-        Interact = interact;
-        Attack = attack;
-        Pause = pause;
     }
 
     void Start()
     {
-        // If the user ever played the Tutorial
-        if (!PlayerPrefs.HasKey(Shortcuts.KEY_BEGUN)) PlayerPrefs.SetInt(Shortcuts.KEY_BEGUN, 0);
-
         // Add modules from the beginning if the player already has them, and eliminate
-        Transform modBase = player.GetComponentInChildren<ModuleBaseBehaviour>().transform;
-
-        if (PlayerPrefs.GetInt(Shortcuts.KEY_MOD_PROJECTILE).Equals(1)) Instantiate(m_projectile, modBase);
-        if (PlayerPrefs.GetInt(Shortcuts.KEY_MOD_SHIELD).Equals(1)) Instantiate(m_projectile, modBase);
-        if (PlayerPrefs.GetInt(Shortcuts.KEY_MOD_CLEANSE).Equals(1)) Instantiate(m_projectile, modBase);
+        if (PlayerPrefs.GetInt(Shortcuts.KEY_MOD_PROJECTILE).Equals(1)) InstantiateModule(Mod.Projectile);
+        if (PlayerPrefs.GetInt(Shortcuts.KEY_MOD_SHIELD).Equals(1)) InstantiateModule(Mod.Shield);
+        if (PlayerPrefs.GetInt(Shortcuts.KEY_MOD_CLEANSE).Equals(1)) InstantiateModule(Mod.Cleanse);
     }
 
     public void StoreSM(float sm)
     {
         storedSM += sm;
+    }
+
+    public void ClearSM()
+    {
+        storedSM = 0;
     }
 
     public void UploadSM()
@@ -89,13 +70,32 @@ public class LevelManager : MonoBehaviour
 
     public void RestartScene()
     {
-        Shortcuts.LoadScene(region, scene);
+        Shortcuts.LoadScene(region, stage);
     }
 
     public void SetPause(bool on)
     {
+        if (on)
+        {
+            playerVelOnPause = player.GetComponent<Rigidbody2D>().linearVelocity;
+
+            foreach (FoeBehaviour foe in foeSource.GetComponentsInChildren<FoeBehaviour>()) foeVelOnPause.Add(foe.GetComponent<Rigidbody2D>().linearVelocity);
+        }
+
         player.gameObject.SetActive(!on);
         foeSource.SetActive(!on);
+
+        if (!on)
+        {
+            player.GetComponent<Rigidbody2D>().linearVelocity = playerVelOnPause;
+
+            foreach (FoeBehaviour foe in foeSource.GetComponentsInChildren<FoeBehaviour>())
+            {
+                foe.GetComponent<Rigidbody2D>().linearVelocity = foeVelOnPause[0];
+                foeVelOnPause.Remove(foeVelOnPause[0]);
+            }
+        }
+
     }
 
     public void Cutscene(bool on)
@@ -103,5 +103,17 @@ public class LevelManager : MonoBehaviour
         canPause = !on;
         if (on) player.entityCode.AddState(State.Disconnected);
         else player.entityCode.RemoveState(State.Disconnected);
+    }
+
+    public void InstantiateModule(Mod mod)
+    {
+        Transform modBase = player.GetComponentInChildren<ModuleBaseBehaviour>().transform;
+
+        switch (mod)
+        {
+            case Mod.Projectile: Instantiate(m_projectile, modBase); break;
+            case Mod.Shield: Instantiate(m_shield, modBase); break;
+            case Mod.Cleanse: Instantiate(m_cleanse, modBase); break;
+        }
     }
 }

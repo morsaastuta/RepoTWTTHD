@@ -17,7 +17,7 @@ TagManager:
   - Cast
   - Box
   - Signpost
-  - post
+  - Outbounds
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4021352517
+    locked: 0
   - name: Bottom
     uniqueID: 4073760961
     locked: 0

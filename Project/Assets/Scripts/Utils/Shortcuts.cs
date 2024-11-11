@@ -19,9 +19,9 @@ public static class Shortcuts
         SceneManager.LoadScene("MainMenu");
     }
 
-    public static void LoadScene(int region, int scene)
+    public static void LoadScene(int region, int stage)
     {
-        SceneManager.LoadScene(region.ToString("00") + "." + scene.ToString("00"));
+        SceneManager.LoadScene(region.ToString("00") + "." + stage.ToString("00"));
     }
 
     public static bool CollidesWithLayer(Collision2D collision, string layerName)
@@ -49,7 +49,17 @@ public static class Shortcuts
 
     public static bool GetGroundRaycast(Collider2D collider)
     {
-        return Physics2D.Raycast(collider.transform.position + new Vector3(collider.bounds.size.x / 2 - 0.04f, 0, 0), Vector2.down, 0.04f, LayerMask.GetMask("Ground", "Platform", "Box")) || Physics2D.Raycast(collider.transform.position - new Vector3(collider.bounds.size.x / 2 + 0.04f, 0, 0), Vector2.down, 0.04f, LayerMask.GetMask("Ground", "Platform", "Box"));
+        Transform entity = collider.transform;
+
+        // Elevate player on Platform detection (GROUNDED assurance)
+        if (Physics2D.Raycast(entity.position + new Vector3(collider.bounds.size.x / 2 - 0.03f, 0, 0), Vector2.down, 0.03f, LayerMask.GetMask("Platform")) ||
+            Physics2D.Raycast(entity.position - new Vector3(collider.bounds.size.x / 2 - 0.03f, 0, 0), Vector2.down, 0.03f, LayerMask.GetMask("Platform")))
+            entity.position = new(entity.position.x, entity.position.y + 0.01f);
+
+        // Return GROUNDED
+        return
+            Physics2D.Raycast(entity.position + new Vector3(collider.bounds.size.x / 2 - 0.04f, 0, 0), Vector2.down, 0.04f, LayerMask.GetMask("Ground", "Platform", "Box")) ||
+            Physics2D.Raycast(entity.position - new Vector3(collider.bounds.size.x / 2 - 0.04f, 0, 0), Vector2.down, 0.04f, LayerMask.GetMask("Ground", "Platform", "Box"));
     }
 
     public static bool GetPrecipiceRaycast(Collider2D collider, bool right)

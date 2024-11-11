@@ -32,8 +32,19 @@ public class EntityBehaviour : MonoBehaviour
         // Death
         if (entityCode.apm > entityCode.pm)
         {
+            // Store score
             LevelManager.instance.StoreSM(entityCode.sm);
-            Destroy(gameObject);
+
+            // If FOE
+            if (entityCode.GetType().BaseType.Equals(typeof(Foe))) Destroy(gameObject);
+            // If PLAYER
+            else
+            {
+                LevelManager.instance.ClearSM();
+                transform.position = LevelManager.instance.pointer.position;
+                body.linearVelocity = new(0, 0);
+                entityCode.ClearMemory();
+            }
         }
 
         if (!entityCode.HasState(State.Disconnected) && entityCode.AllocatedVM()) entityCode.ClearVM(Time.deltaTime * 1f);

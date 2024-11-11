@@ -18,7 +18,7 @@ public class ModuleChipBehaviour : MonoBehaviour
     #endregion
 
     List<string> message = new();
-    GameObject modObj;
+    string modKey;
 
     void Start()
     {
@@ -27,24 +27,31 @@ public class ModuleChipBehaviour : MonoBehaviour
             case Mod.Projectile:
                 icon.sprite = projectileSpr;
                 message.AddRange(new[]{"AVII obtained the PROJECTILE module.", "Use [Left Click] to shoot projectiles in the direction desired to destroy obstacles.", "VM usage: 3"});
-                modObj = LevelManager.instance.M_projectile;
+                modKey = Shortcuts.KEY_MOD_PROJECTILE;
                 break;
             case Mod.Shield:
                 icon.sprite = shieldSpr;
                 message.AddRange(new[]{"AVII obtained the SHIELD module.", "", "VM usage: 8"});
+                modKey = Shortcuts.KEY_MOD_SHIELD;
                 break;
             case Mod.Cleanse:
                 icon.sprite = cleanseSpr;
                 message.AddRange(new[]{"AVII obtained the CLEANSE module.", "", "VM usage: 15"});
+                modKey = Shortcuts.KEY_MOD_CLEANSE;
                 break;
         }
+
+        // If the player already has the mod, destroy this chip
+        if (PlayerPrefs.GetInt(modKey).Equals(1)) Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
-            Instantiate(modObj, collider.GetComponentInChildren<ModuleBaseBehaviour>().transform);
+            PlayerPrefs.SetInt(modKey, 1);
+
+            LevelManager.instance.InstantiateModule(mod);
             GameObject.Find("Text HUD").GetComponent<MessageController>().ReceiveMessage(message);
             Destroy(gameObject);
         }

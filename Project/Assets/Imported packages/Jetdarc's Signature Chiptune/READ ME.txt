@@ -1,0 +1,21 @@
+Hey! Thank you for purchasing my very first music pack!!
+
+I can also compose even better custom music specifically for your games. For more information, check out my website: (www.jetdarc.com) or contact me at: (iamjetdarc@gmail.com), and i'll be happy to work with you ;)
+
+File Types: Wav & Mp3
+Sample Rate: 44100khz
+Bit Depth: 16 Bit (Wav)
+All audio is Stereo
+
+This pack contains music files with terminology such as...
+	(Original Version) - The original, unedited music file.
+	(Loopable Version) - Music files that have been modified to be loopable, and do not require 2 files.
+	(1st Run) - Music files that are to play only once and prior to "(2nd & Loopable)" files.
+	(2nd & Loopable Run) - Music files that are to play after "(1st Run)" files, and can be looped from here.
+
+AS A DISCLAIMER, only some of these loopable versions have "(1st Run)" and "(2nd & Loopable Run)" files. I'd reccomend that for these loopable versions, that you have the "(1st Run)" file play first, and afterwards, have the "(2nd & Loopable Run)" play, and loop from there. If you use only the "(1st Run)" audio file as a loop, the ending of the song will sound like it's been cut off. If you use only the "(2nd & Loopable Run)" audio file as a loop, when the song plays for the very first time, there will be some noise in the beginning.
+|
+"But why?" - These audio files are like this because certain instruments in the songs have effects like Reverb and Delay which leave a sort of audio trail at the end of the song. This trail has to be cut off and added back in to the beginning of the song in order for the loop to be seamless, but you'll still be able to hear the trail in the beginning, so I included a version without the trail in the beginning, but with the cut still in the end so the 2 runs can connect seamlessly, and then the second run can play forever after.
+
+This pack comes with a variety of themed songs that could fit various situations like boss battles, upbeat adventures, and relaxing settings, all in odd time signatures. All of these songs are around 1 minute in length.
+
