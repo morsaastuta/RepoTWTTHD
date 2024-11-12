@@ -13,7 +13,7 @@ public class StationBehaviour : MonoBehaviour
     [Header("Resources")]
     [SerializeField] AnimationClip checkClip;
 
-    bool isTrigger = false;
+    bool on = false;
     Collider2D player;
 
 
@@ -26,7 +26,7 @@ public class StationBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (isTrigger && Shortcuts.Pressed(LevelManager.instance.interact)) StoreData();
+        if (on && Shortcuts.Pressed(LevelManager.instance.interact)) StoreData();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -34,7 +34,7 @@ public class StationBehaviour : MonoBehaviour
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
             player = collider;
-            isTrigger = true;
+            on = true;
             signAnimator.SetBool("on", true);
             textAnimator.SetBool("on", true);
             if (LevelManager.instance.pointer.Equals(pointer)) dataAnimator.SetBool("on", true);
@@ -46,7 +46,7 @@ public class StationBehaviour : MonoBehaviour
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
             player = collider;
-            isTrigger = false;
+            on = false;
             signAnimator.SetBool("on", false);
             textAnimator.SetBool("on", false);
             dataAnimator.SetBool("on", false);

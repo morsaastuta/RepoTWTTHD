@@ -14,7 +14,7 @@ public class SignpostBehaviour : MonoBehaviour
     [Header("Resources")]
     [SerializeField] AnimationClip checkClip;
 
-    bool isTrigger = false;
+    bool on = false;
     Collider2D player;
 
     void Start()
@@ -25,7 +25,7 @@ public class SignpostBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (isTrigger && Shortcuts.Pressed(LevelManager.instance.interact) && !LevelManager.instance.messageHUD.Active()) LevelManager.instance.messageHUD.ReceiveMessage(content);
+        if (on && Shortcuts.Pressed(LevelManager.instance.interact) && !LevelManager.instance.messageHUD.Active()) LevelManager.instance.messageHUD.ReceiveMessage(content);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -33,7 +33,7 @@ public class SignpostBehaviour : MonoBehaviour
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
             player = collider;
-            isTrigger = true;
+            on = true;
             signAnimator.SetBool("on", true);
             textAnimator.SetBool("on", true);
         }
@@ -44,7 +44,7 @@ public class SignpostBehaviour : MonoBehaviour
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
             player = collider;
-            isTrigger = false;
+            on = false;
             signAnimator.SetBool("on", false);
             textAnimator.SetBool("on", false);
         }

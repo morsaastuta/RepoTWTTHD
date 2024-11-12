@@ -13,7 +13,7 @@ public class GateBehaviour : MonoBehaviour
     [SerializeField] Animator backAnimator;
     [SerializeField] Transform pointer;
 
-    bool isTrigger = false;
+    bool on = false;
     Collider2D player;
 
     void Start()
@@ -26,7 +26,7 @@ public class GateBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (isTrigger & Shortcuts.Pressed(LevelManager.instance.interact))
+        if (on & Shortcuts.Pressed(LevelManager.instance.interact))
         {
             player.transform.position = pointer.position;
             player.GetComponent<Rigidbody2D>().linearVelocityX = 0;
@@ -52,7 +52,7 @@ public class GateBehaviour : MonoBehaviour
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
             player = collider;
-            isTrigger = true;
+            on = true;
             backAnimator.SetBool("open", true);
         }
     }
@@ -62,7 +62,7 @@ public class GateBehaviour : MonoBehaviour
         if (Shortcuts.CollidesWithLayer(collider, "Player"))
         {
             player = collider;
-            isTrigger = false;
+            on = false;
             backAnimator.SetBool("open", false);
         }
     }
