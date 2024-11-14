@@ -13,8 +13,9 @@ public class Avii : Player
         type = CType.Anti;
         pm = 100f;
         vm = 50f;
-        speed = 3f;
-        jumpPower = 8f;
+        ogSpeed = 3f;
+        ogJumpPower = 8f;
+        UpdateState();
         ClearMemory();
     }
 }

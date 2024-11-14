@@ -15,7 +15,7 @@ public class BoxBehaviour : MonoBehaviour
     {
         box.SetInteger("h", height);
         box.SetInteger("w", width);
-        GetComponent<BoxCollider2D>().size = new(width,height);
+        GetComponent<BoxCollider2D>().size = new(width - 0.04f, height - 0.04f);
     }
 
     void Update()

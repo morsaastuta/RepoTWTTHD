@@ -10,11 +10,16 @@ public class FoeBehaviour : EntityBehaviour
     protected bool targetDetected = false;
     protected Vector3 targetPos = new();
 
+    protected override void Start()
+    {
+        base.Start();
+
+        targetPos = transform.position;
+    }
+
     protected override void Update()
     {
         base.Update();
-
-        targetPos = transform.position;
 
         if (right) faceX = 1;
         else faceX = -1;
@@ -62,12 +67,18 @@ public class FoeBehaviour : EntityBehaviour
         return targetDetected;
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if (Shortcuts.CollidesWithLayer(collision, "Foe")) right = !right;
+    }
+
     protected override void OnCollisionStay2D(Collision2D collision)
     {
         base.OnCollisionStay2D(collision);
 
         if (Shortcuts.CollidesWithLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 0, transform.position);
-        if (Shortcuts.CollidesWithLayer(collision, "Foe")) right = !right;
     }
 
     protected override void OnTriggerStay2D(Collider2D collider)

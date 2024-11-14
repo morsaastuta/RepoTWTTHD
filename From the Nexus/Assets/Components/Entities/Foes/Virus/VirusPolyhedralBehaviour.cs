@@ -10,9 +10,9 @@ public class VirusPolyhedralBehaviour : FoeBehaviour
 
     protected override void Start()
     {
-        base.Start();
-
         entityCode = new VirusPolyhedral();
+
+        base.Start();
     }
 
     protected override void Update()

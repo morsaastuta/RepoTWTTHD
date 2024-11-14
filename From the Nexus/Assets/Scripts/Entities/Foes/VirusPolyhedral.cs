@@ -11,8 +11,9 @@ public class VirusPolyhedral : Foe
         pm = 12f;
         vm = 999f;
         sm = 3f;
-        speed = 0.9f;
-        jumpPower = 0f;
+        ogSpeed = 2.4f;
+        ogJumpPower = 0f;
+        UpdateState();
         ClearMemory();
     }
 }

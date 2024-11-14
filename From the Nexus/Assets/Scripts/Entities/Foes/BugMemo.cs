@@ -11,8 +11,9 @@ public class BugMemo : Foe
         type = CType.Memo;
         pm = 1f;
         vm = 5f;
-        speed = 2f;
-        jumpPower = 6f;
+        ogSpeed = 1.6f;
+        ogJumpPower = 6f;
+        UpdateState();
         ClearMemory();
     }
 }

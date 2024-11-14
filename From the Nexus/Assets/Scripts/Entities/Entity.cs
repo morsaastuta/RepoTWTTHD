@@ -20,8 +20,10 @@ public abstract class Entity : TypedConcept
     public float sm = 0;
 
     // Movement
-    public float speed = 3f;
-    public float jumpPower = 8f;
+    public float speed;
+    public float jumpPower;
+    protected float ogSpeed;
+    protected float ogJumpPower;
 
     public void UpdateState()
     {
@@ -33,13 +35,14 @@ public abstract class Entity : TypedConcept
         else if (HasState(State.Overloaded)) RemoveState(State.Overloaded);
 
         // Set default values
-        speed = 3f;
-        jumpPower = 8f;
+        speed = ogSpeed;
+        jumpPower = ogJumpPower;
 
         // Stat application
-        if (HasState(State.Overloaded)) {
-            speed = 1f;
-            jumpPower = 4f;
+        if (HasState(State.Overloaded))
+        {
+            speed = ogSpeed/3;
+            jumpPower = ogJumpPower/2;
         }
     }
 

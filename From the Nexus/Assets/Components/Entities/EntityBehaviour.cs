@@ -104,6 +104,10 @@ public class EntityBehaviour : MonoBehaviour
         }
     }
 
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+    }
+
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
     }

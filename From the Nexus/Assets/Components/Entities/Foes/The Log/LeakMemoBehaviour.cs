@@ -13,9 +13,9 @@ public class LeakMemoBehaviour : FoeBehaviour
 
     protected override void Start()
     {
-        base.Start();
-
         entityCode = new LeakMemo();
+
+        base.Start();
     }
 
     protected override void FixedUpdate()

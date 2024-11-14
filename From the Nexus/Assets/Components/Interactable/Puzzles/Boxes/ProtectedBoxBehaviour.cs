@@ -19,8 +19,8 @@ public class ProtectedBoxBehaviour : MonoBehaviour
         box.SetInteger("w", width);
         shield.SetInteger("h", height);
         shield.SetInteger("w", width);
-        GetComponent<BoxCollider2D>().size = new(width,height);
-        weakSide.GetComponent<BoxCollider2D>().size = new(.05f, height-0.1f);
+        GetComponent<BoxCollider2D>().size = new(width - 0.04f, height - 0.04f);
+        weakSide.GetComponent<BoxCollider2D>().size = new(.05f, height - 0.99f);
         weakSide.GetComponent<BoxCollider2D>().offset = new(0.475f + ((width - 1) * 0.5f), 0);
     }
 

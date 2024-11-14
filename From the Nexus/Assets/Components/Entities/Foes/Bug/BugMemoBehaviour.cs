@@ -2,11 +2,9 @@ public class BugMemoBehaviour : FoeBehaviour
 {
     protected override void Start()
     {
-        base.Start();
-
-        right = true;
-
         entityCode = new BugMemo();
+
+        base.Start();
     }
 
     protected override void Update()
