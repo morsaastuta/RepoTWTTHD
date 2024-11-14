@@ -192,10 +192,11 @@ MonoBehaviour:
   interact: {fileID: -456525165139817274, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   attack: {fileID: -3209366025278077670, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   react: {fileID: 5989333353873566771, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  burst: {fileID: 194294493604387607, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   pause: {fileID: 8623680927853045294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_projectile: {fileID: 649964089735542090, guid: 877b5b23f05b11649a3220968d37f7e2, type: 3}
   m_shield: {fileID: 649964089735542090, guid: 546196915c0cb344d8ad85eefebc9ae8, type: 3}
-  m_cleanse: {fileID: 0}
+  m_cleanse: {fileID: 649964089735542090, guid: 4ffa2c4c49928194aabc98db5ed7a1c5, type: 3}
 --- !u!223 &4076064147614958070
 Canvas:
   m_ObjectHideFlags: 0

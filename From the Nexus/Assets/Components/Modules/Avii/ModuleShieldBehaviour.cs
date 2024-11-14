@@ -11,7 +11,6 @@ public class ModuleShieldBehaviour : ModuleBehaviour
 
     void Update()
     {
-
         if (Shortcuts.Pressed(LevelManager.instance.react)) ActionShield();
     }
 
@@ -32,6 +31,7 @@ public class ModuleShieldBehaviour : ModuleBehaviour
     {
         if (modBase.DefaultConditions())
         {
+            user.entityCode.AllocateVM(8f);
             Shortcuts.NullifyMovement(GetComponentInParent<PlayerBehaviour>());
             GetComponentInParent<PlayerBehaviour>().entityCode.AddState(State.Disconnected);
             shield.SetBool("on", true);

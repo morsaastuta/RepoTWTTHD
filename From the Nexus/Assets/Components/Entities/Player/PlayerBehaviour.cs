@@ -59,8 +59,10 @@ public class PlayerBehaviour : EntityBehaviour
         AnimatorSetters();
     }
 
-    protected void OnTriggerEnter2D(Collider2D collider)
+    protected override void OnTriggerStay2D(Collider2D collider)
     {
+        base.OnTriggerStay2D(collider);
+
         if (Shortcuts.CollidesWithLayer(collider, "Outbounds"))
         {
             transform.position = LevelManager.instance.pointer.position;

@@ -14,8 +14,8 @@ public class EntityBehaviour : MonoBehaviour
     protected float directionY;
     public bool grounded = false;
     protected Vector3 lastPos = new();
-    float flinchTimerMax = 120;
-    float flinchTimer = 0;
+    protected float flinchTimerMax = 120;
+    protected float flinchTimer = 0;
 
     // Projection
     protected SpriteRenderer renderer;
@@ -81,6 +81,10 @@ public class EntityBehaviour : MonoBehaviour
             }
             else body.gravityScale = 1;
         }
+        else
+        {
+            if (!entityCode.HasState(State.Disconnected)) body.linearVelocityY = entityCode.speed * directionY;
+        }
 
         // Start at 0
         if (!entityCode.HasState(State.Disconnected)) body.linearVelocityX = entityCode.speed * directionX;
@@ -100,13 +104,17 @@ public class EntityBehaviour : MonoBehaviour
         }
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionStay2D(Collision2D collision)
     {
     }
 
-    public void ReceiveDamage(float p, float v, Vector2 pos)
+    protected virtual void OnTriggerStay2D(Collider2D collider)
     {
-        if (!entityCode.HasState(State.Disconnected))
+    }
+
+    public virtual void ReceiveDamage(float p, float v, Vector2 pos)
+    {
+        if (!entityCode.HasState(State.Disconnected) && flinchTimer <= 0)
         {
             // Allocate memory
             entityCode.AllocatePM(p);

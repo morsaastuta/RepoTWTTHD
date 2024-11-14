@@ -41,29 +41,47 @@ TagManager:
   - name: Background
     uniqueID: 4021352517
     locked: 0
-  - name: Bottom
+  - name: Ground
     uniqueID: 4073760961
     locked: 0
-  - name: Back
+  - name: Details
     uniqueID: 1195293047
     locked: 0
-  - name: Under
+  - name: Platforms_B
     uniqueID: 89398797
+    locked: 0
+  - name: Deco_B
+    uniqueID: 2774587835
+    locked: 0
+  - name: Interactables
+    uniqueID: 2962184377
+    locked: 0
+  - name: Items
+    uniqueID: 3953333971
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Over
+  - name: Foes
+    uniqueID: 3097552623
+    locked: 0
+  - name: Players
     uniqueID: 1766735731
     locked: 0
-  - name: Fore
+  - name: Casts
+    uniqueID: 3683135089
+    locked: 0
+  - name: Platforms_F
     uniqueID: 438479877
     locked: 0
-  - name: Top
+  - name: Deco_F
     uniqueID: 3650908191
     locked: 0
   - name: Foreground
     uniqueID: 677309817
+    locked: 0
+  - name: UI
+    uniqueID: 2090210115
     locked: 0
   m_RenderingLayers:
   - Default

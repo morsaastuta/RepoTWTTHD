@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public InputActionReference interact;
     [SerializeField] public InputActionReference attack;
     [SerializeField] public InputActionReference react;
+    [SerializeField] public InputActionReference burst;
     [SerializeField] public InputActionReference pause;
     #endregion
 
