@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 06a0c8c2963704347884cf8e4be7ccf8
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 224977
+  packageName: Jetdarc's Signature Chiptune
+  packageVersion: 1.0
+  assetPath: Assets/Jetdarc's Signature Chiptune/05_Heart and Moon/Loopable Versions/Heart
+    and Moon (2nd & Looping Run).wav
+  uploadId: 511105

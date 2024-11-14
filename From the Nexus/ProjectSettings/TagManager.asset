@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Foe
+  - Player
+  - Platform
+  - Cast
+  - Box
+  - Signpost
+  - Outbounds
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 4021352517
+    locked: 0
+  - name: Bottom
+    uniqueID: 4073760961
+    locked: 0
+  - name: Back
+    uniqueID: 1195293047
+    locked: 0
+  - name: Under
+    uniqueID: 89398797
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Over
+    uniqueID: 1766735731
+    locked: 0
+  - name: Fore
+    uniqueID: 438479877
+    locked: 0
+  - name: Top
+    uniqueID: 3650908191
+    locked: 0
+  - name: Foreground
+    uniqueID: 677309817
+    locked: 0
+  m_RenderingLayers:
+  - Default

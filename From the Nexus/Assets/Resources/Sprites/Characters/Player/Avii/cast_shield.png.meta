@@ -1,0 +1,525 @@
+fileFormatVersion: 2
+guid: efef553491575a54fa462bd33e8aa841
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -267139871924864917
+    second: cast_shield_0
+  - first:
+      213: -5311055489555691772
+    second: cast_shield_1
+  - first:
+      213: 558404382797594305
+    second: cast_shield_2
+  - first:
+      213: -8150626533832252940
+    second: cast_shield_3
+  - first:
+      213: -8103352337869416382
+    second: cast_shield_4
+  - first:
+      213: 8617560477339936603
+    second: cast_shield_5
+  - first:
+      213: 5605078599939465471
+    second: cast_shield_6
+  - first:
+      213: -3468438100390465505
+    second: cast_shield_7
+  - first:
+      213: -7305900794637204827
+    second: cast_shield_8
+  - first:
+      213: 7602510163349842029
+    second: cast_shield_9
+  - first:
+      213: -2029418772650096970
+    second: cast_shield_10
+  - first:
+      213: 6848649748156527952
+    second: cast_shield_11
+  - first:
+      213: -733650100053147810
+    second: cast_shield_12
+  - first:
+      213: 8043765433625292678
+    second: cast_shield_13
+  - first:
+      213: 3058755281549767904
+    second: cast_shield_14
+  - first:
+      213: 7791777389363743983
+    second: cast_shield_15
+  - first:
+      213: -8060966981614209213
+    second: cast_shield_16
+  - first:
+      213: 6449819139617735594
+    second: cast_shield_17
+  - first:
+      213: 4713572485284770123
+    second: cast_shield_18
+  - first:
+      213: -8381748587433753155
+    second: cast_shield_19
+  - first:
+      213: 3034525988036725360
+    second: cast_shield_20
+  - first:
+      213: 3324213590498091381
+    second: cast_shield_21
+  - first:
+      213: 2346300924465323729
+    second: cast_shield_22
+  - first:
+      213: 2052980210815576509
+    second: cast_shield_23
+  - first:
+      213: 9059453982002440023
+    second: cast_shield_24
+  - first:
+      213: 4336631782105295260
+    second: cast_shield_25
+  - first:
+      213: 500598628049761931
+    second: cast_shield_26
+  - first:
+      213: -6564557811368379087
+    second: cast_shield_27
+  - first:
+      213: 9090654990329979301
+    second: cast_shield_28
+  - first:
+      213: -4481994755314246818
+    second: cast_shield_29
+  - first:
+      213: -8739478223779548865
+    second: cast_shield_30
+  - first:
+      213: -8539067909298677246
+    second: cast_shield_31
+  - first:
+      213: 8382941313502821504
+    second: cast_shield_32
+  - first:
+      213: -8016916049315305538
+    second: cast_shield_33
+  - first:
+      213: -3948141522345722097
+    second: cast_shield_34
+  - first:
+      213: -8702126512813930989
+    second: cast_shield_35
+  - first:
+      213: -6127175113107764728
+    second: cast_shield_36
+  - first:
+      213: -7012194578150903427
+    second: cast_shield_37
+  - first:
+      213: 6553793593354474139
+    second: cast_shield_38
+  - first:
+      213: -6164829178181591948
+    second: cast_shield_39
+  - first:
+      213: -5240623431118809395
+    second: cast_shield_40
+  - first:
+      213: 6547719774657835334
+    second: cast_shield_41
+  - first:
+      213: -3946033437484269439
+    second: cast_shield_42
+  - first:
+      213: 8582813106052851972
+    second: cast_shield_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cast_shield_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b68339ca3bdea4cf0800000000000000
+      internalID: -267139871924864917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40705a2eb275b46b0800000000000000
+      internalID: -5311055489555691772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cefbadd3d9dfb700800000000000000
+      internalID: 558404382797594305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f12e02f95823ee80800000000000000
+      internalID: -8150626533832252940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 248567b6bfb1b8f80800000000000000
+      internalID: -8103352337869416382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57ea4aa899b79770800000000000000
+      internalID: 8617560477339936603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff029872a4d39cd40800000000000000
+      internalID: 5605078599939465471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f10bbcc9ce1addfc0800000000000000
+      internalID: -3468438100390465505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a2c7638fe93c9a90800000000000000
+      internalID: -7305900794637204827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d68a3c7b6ba818960800000000000000
+      internalID: 7602510163349842029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b68eabe06e06d3e0800000000000000
+      internalID: -2029418772650096970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cast_shield_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05530f509aa4b0f50800000000000000
+      internalID: 6848649748156527952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b887e1c128d0b814ab460dee62a97321
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cast_shield_0: -267139871924864917
+      cast_shield_1: -5311055489555691772
+      cast_shield_10: -2029418772650096970
+      cast_shield_11: 6848649748156527952
+      cast_shield_2: 558404382797594305
+      cast_shield_3: -8150626533832252940
+      cast_shield_4: -8103352337869416382
+      cast_shield_5: 8617560477339936603
+      cast_shield_6: 5605078599939465471
+      cast_shield_7: -3468438100390465505
+      cast_shield_8: -7305900794637204827
+      cast_shield_9: 7602510163349842029
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
