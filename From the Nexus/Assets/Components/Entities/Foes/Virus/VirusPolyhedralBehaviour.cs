@@ -8,6 +8,8 @@ public class VirusPolyhedralBehaviour : FoeBehaviour
     [SerializeField] Animator fibersAnimator;
     [SerializeField] Animator castAnimator;
 
+    bool targetOverride = false;
+
     protected override void Start()
     {
         entityCode = new VirusPolyhedral();
@@ -19,9 +21,10 @@ public class VirusPolyhedralBehaviour : FoeBehaviour
     {
         base.Update();
 
-        Approach();
+        if (!targetOverride) Approach(false);
+        else Approach(true);
 
-        if (targetDetected)
+        if (targetDetected || targetOverride)
         {
             bodyAnimator.SetBool("chase", true);
             fibersAnimator.SetBool("chase", true);
@@ -49,5 +52,12 @@ public class VirusPolyhedralBehaviour : FoeBehaviour
             body.linearVelocityX = 0f;
             body.linearVelocityY = 0f;
         }
+    }
+
+    public void OverrideTarget(bool on, Vector3 target)
+    {
+        targetOverride = on;
+
+        if (targetOverride) targetPos = target;
     }
 }

@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public InputActionReference react;
     [SerializeField] public InputActionReference burst;
     [SerializeField] public InputActionReference pause;
+    [SerializeField] public InputActionReference aim;
     #endregion
 
     #region MODULES
@@ -102,8 +103,8 @@ public class LevelManager : MonoBehaviour
     public void Cutscene(bool on)
     {
         canPause = !on;
-        if (on) player.entityCode.AddState(State.Disconnected);
-        else player.entityCode.RemoveState(State.Disconnected);
+        if (on) player.entityCode.AddState(State.Cutscene);
+        else player.entityCode.RemoveState(State.Cutscene);
     }
 
     public void InstantiateModule(Mod mod)

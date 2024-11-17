@@ -52,10 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3241723f50b5c438f37d79f21baa5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 1
+  content: 
+  fontSize: 28
   off: {fileID: 4494619829604798120, guid: 34e0833344c0d664fad6db4423448724, type: 3}
   hover: {fileID: -325850653, guid: 34e0833344c0d664fad6db4423448724, type: 3}
   click: {fileID: 71359385, guid: 34e0833344c0d664fad6db4423448724, type: 3}
-  scale: 1
 --- !u!222 &5603574008969734828
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -203,7 +205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BEGIN
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 36751474732f2fb469df967fd01871dc, type: 2}
   m_sharedMaterial: {fileID: -6008124100147723755, guid: 36751474732f2fb469df967fd01871dc, type: 2}

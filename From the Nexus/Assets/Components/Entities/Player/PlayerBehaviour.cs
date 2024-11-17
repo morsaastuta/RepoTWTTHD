@@ -1,5 +1,5 @@
-using UnityEngine;
 using Glossary;
+using UnityEngine;
 
 public class PlayerBehaviour : EntityBehaviour
 {
@@ -10,6 +10,7 @@ public class PlayerBehaviour : EntityBehaviour
 
     // Movement
     public bool canMove = true;
+    public bool right = true;
 
     protected override void Start()
     {
@@ -32,26 +33,13 @@ public class PlayerBehaviour : EntityBehaviour
     {
         base.Update();
 
-        if (!entityCode.HasState(State.Disconnected))
+        if (!entityCode.HasState(State.Cutscene) && !entityCode.HasState(State.Disconnected))
         {
             // Movement input
             directionX = LevelManager.instance.move.action.ReadValue<Vector2>().x;
 
             // Jump input
             if (Shortcuts.Pressed(LevelManager.instance.jump)) ActionJump();
-
-            // If the player is moving horizontally
-            if (directionX != 0)
-            {
-                animator.SetBool("x", true);
-                if (directionX < 0) transform.localScale = new Vector2(-1, 1);
-                else if (directionX > 0) transform.localScale = new Vector2(1, 1);
-            }
-            else animator.SetBool("x", false);
-        }
-        else
-        {
-            directionX = 0;
         }
         
         directionY = body.linearVelocityY;
@@ -73,6 +61,23 @@ public class PlayerBehaviour : EntityBehaviour
 
     void AnimatorSetters()
     {
+        // If the player is moving horizontally
+        if (directionX != 0)
+        {
+            animator.SetBool("x", true);
+            if (directionX < 0)
+            {
+                transform.localScale = new Vector2(-1, 1);
+                right = false;
+            }
+            else if (directionX > 0)
+            {
+                transform.localScale = new Vector2(1, 1);
+                right = true;
+            }
+        }
+        else animator.SetBool("x", false);
+
         // If the player is moving vertically
         if (directionY != 0) animator.SetBool("y", true);
         else animator.SetBool("y", false);

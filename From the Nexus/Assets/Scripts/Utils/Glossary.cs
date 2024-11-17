@@ -12,6 +12,6 @@ namespace Glossary
 
     public enum State
     {
-        Overloaded, Infected, Disconnected
+        Overloaded, Infected, Disconnected, Cutscene
     }
 }

@@ -39,12 +39,12 @@ public class FoeBehaviour : EntityBehaviour
         }
     }
 
-    protected void Approach()
+    protected void Approach(bool targetOverride)
     {
         float dirX = 0;
         float dirY = 0;
 
-        if (CheckDetection())
+        if (CheckDetection() || targetOverride)
         {
             if (targetPos.x < transform.position.x) dirX = -1;
             else if (targetPos.x > transform.position.x) dirX = 1;
@@ -55,6 +55,11 @@ public class FoeBehaviour : EntityBehaviour
 
         directionX = dirX;
         directionY = dirY;
+    }
+
+    protected void Detect()
+    {
+        CheckDetection();
     }
 
     protected bool CheckDetection()

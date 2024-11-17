@@ -3,32 +3,39 @@ using UnityEngine.InputSystem;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] GameObject pane;
+    [SerializeField] GameObject pausePane;
+    [SerializeField] GameObject guidePane;
 
     void Update()
     {
         if (Shortcuts.Pressed(LevelManager.instance.pause) && LevelManager.instance.canPause)
         {
-            if (!pane.activeInHierarchy) Open();
-            else Close();
+            if (!pausePane.activeInHierarchy && !guidePane.activeInHierarchy) Open();
+            else if (!guidePane.activeInHierarchy) Close();
         }
     }
 
     void Open()
     {
         LevelManager.instance.SetPause(true);
-        pane.SetActive(true);
+        pausePane.SetActive(true);
     }
 
     void Close()
     {
-        pane.SetActive(false);
+        pausePane.SetActive(false);
         LevelManager.instance.SetPause(false);
     }
 
     public void Restart()
     {
         LevelManager.instance.RestartScene();
+    }
+
+    public void Guide(bool on)
+    {
+        pausePane.SetActive(!on);
+        guidePane.SetActive(on);
     }
 
     public void MainMenu()

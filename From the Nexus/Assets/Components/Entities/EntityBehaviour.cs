@@ -1,4 +1,5 @@
 using Glossary;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityBehaviour : MonoBehaviour
@@ -18,14 +19,14 @@ public class EntityBehaviour : MonoBehaviour
     protected float flinchTimer = 0;
 
     // Projection
-    protected SpriteRenderer renderer;
+    protected List<SpriteRenderer> projections = new();
     protected Animator animator;
 
     protected virtual void Start()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        renderer = GetComponentInChildren<SpriteRenderer>();
+        projections.AddRange(GetComponentsInChildren<SpriteRenderer>());
     }
 
     protected virtual void Update()
@@ -64,8 +65,11 @@ public class EntityBehaviour : MonoBehaviour
 
             if (flinchTimer % 6 == 0)
             {
-                if (flinchTimer % 12 == 0) renderer.color = Color.white;
-                else renderer.color = new(0, 0, 0, 0);
+                foreach (SpriteRenderer projection in projections)
+                {
+                    if (flinchTimer % 12 == 0) projection.color = Color.white;
+                    else projection.color = new(0, 0, 0, 0);
+                }
             }
 
             if (flinchTimer <= flinchTimerMax / 2) entityCode.RemoveState(State.Disconnected);
@@ -81,13 +85,22 @@ public class EntityBehaviour : MonoBehaviour
             }
             else body.gravityScale = 1;
         }
-        else
-        {
-            if (!entityCode.HasState(State.Disconnected)) body.linearVelocityY = entityCode.speed * directionY;
-        }
+        else body.gravityScale = 0;
 
-        // Start at 0
-        if (!entityCode.HasState(State.Disconnected)) body.linearVelocityX = entityCode.speed * directionX;
+        // State effects
+        if (entityCode.HasState(State.Cutscene))
+        {
+            directionX = 0;
+            directionY = 0;
+            body.gravityScale = 0;
+        }
+        else if (!bypassGravity) body.gravityScale = 1;
+
+        if (!entityCode.HasState(State.Disconnected))
+        {
+            body.linearVelocityX = entityCode.speed * directionX;
+            if (bypassGravity) body.linearVelocityY = entityCode.speed * directionY;
+        }
     }
 
     protected void EmergencyStop(bool enter)
@@ -118,7 +131,7 @@ public class EntityBehaviour : MonoBehaviour
 
     public virtual void ReceiveDamage(float p, float v, Vector2 pos)
     {
-        if (!entityCode.HasState(State.Disconnected) && flinchTimer <= 0)
+        if (!entityCode.HasState(State.Cutscene) && flinchTimer <= 0)
         {
             // Allocate memory
             entityCode.AllocatePM(p);

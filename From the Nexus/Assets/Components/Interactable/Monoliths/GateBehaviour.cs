@@ -1,6 +1,4 @@
-using Glossary;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GateBehaviour : MonoBehaviour
 {
@@ -29,7 +27,6 @@ public class GateBehaviour : MonoBehaviour
         if (on & Shortcuts.Pressed(LevelManager.instance.interact))
         {
             player.transform.position = pointer.position;
-            player.GetComponent<Rigidbody2D>().linearVelocityX = 0;
             LevelManager.instance.Cutscene(true);
             frontAnimator.SetBool("open", false);
         }
