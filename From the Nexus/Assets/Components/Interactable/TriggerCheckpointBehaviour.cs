@@ -6,12 +6,12 @@ public class TriggerCheckpointBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
             LevelManager.instance.pointer = pointer;
 
-            // The first time the player crosses the pipe at 00_00, activate KEY_BEGUN
-            if (!PlayerPrefs.HasKey(Shortcuts.KEY_BEGUN)) PlayerPrefs.SetInt(Shortcuts.KEY_BEGUN, 0);
+            // The first time the player crosses the pipe at 00_00
+            if (PlayerPrefs.GetInt(Shortcuts.KEY_PROGRESS) <= 0) PlayerPrefs.SetInt(Shortcuts.KEY_PROGRESS, 1);
         }
     }
 }

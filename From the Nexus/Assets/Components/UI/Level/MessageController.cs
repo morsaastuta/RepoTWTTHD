@@ -1,21 +1,20 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class MessageController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] GameObject pane;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] AudioSource sfxSource;
     List<string> content = new();
-    int index = 0;
+    public int index = 0;
     bool init = false;
 
     void LateUpdate()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.interact) && !init) NextString();
+        if (Shortcuts.Pressed(GameManager.instance.interact) && !init) NextString();
         init = false;
     }
 
@@ -34,11 +33,12 @@ public class MessageController : MonoBehaviour
     {
         if (index >= content.Count)
         {
-            DismissMessage();
+            if (pane.activeInHierarchy) DismissMessage();
             return true;
         }
         else
         {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Read, false);
             text.SetText(content[index]);
             index++;
             return false;
@@ -47,6 +47,7 @@ public class MessageController : MonoBehaviour
 
     public void DismissMessage()
     {
+        JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Read, false);
         pane.SetActive(false);
         index = 0;
         content.Clear();

@@ -26,12 +26,16 @@ public class VirusPolyhedralBehaviour : FoeBehaviour
 
         if (targetDetected || targetOverride)
         {
+            if (!sfxSource.isPlaying) JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Detect, true);
+
             bodyAnimator.SetBool("chase", true);
             fibersAnimator.SetBool("chase", true);
             castAnimator.SetBool("chase", true);
         }
         else
         {
+            if (sfxSource.isPlaying) sfxSource.Stop();
+
             bodyAnimator.SetBool("chase", false);
             fibersAnimator.SetBool("chase", false);
             castAnimator.SetBool("chase", false);

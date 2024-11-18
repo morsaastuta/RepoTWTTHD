@@ -40,6 +40,6 @@ public class LeakMemoBehaviour : FoeBehaviour
     {
         SkipCollision(collision);
 
-        if (Shortcuts.CollidesWithLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 10, transform.position);
+        if (Shortcuts.GetCollisionLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 10, transform.position);
     }
 }

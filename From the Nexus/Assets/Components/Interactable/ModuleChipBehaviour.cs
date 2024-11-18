@@ -9,6 +9,7 @@ public class ModuleChipBehaviour : MonoBehaviour
 
     [Header("References")]
     [SerializeField] SpriteRenderer icon;
+    [SerializeField] AudioSource sfxSource;
 
     #region SPRITES
     [Header("Resources")]
@@ -47,13 +48,15 @@ public class ModuleChipBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Collect, false);
+
             PlayerPrefs.SetInt(modKey, 1);
 
             LevelManager.instance.InstantiateModule(mod);
             GameObject.Find("Text HUD").GetComponent<MessageController>().ReceiveMessage(message);
-            Destroy(gameObject);
+            StartCoroutine(Shortcuts.DestroyAudibleObject(gameObject));
         }
     }
 }

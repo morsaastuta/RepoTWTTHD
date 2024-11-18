@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stages/01 - The Log/01.02.unity
     guid: 4269339da6730a14caba4c06eb035a71
+  - enabled: 1
+    path: Assets/Scenes/Stages/01 - The Log/01.03.unity
+    guid: b8ad8b7c2602a8d428ec096f6efc20f1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

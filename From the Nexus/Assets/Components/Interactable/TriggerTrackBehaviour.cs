@@ -6,18 +6,13 @@ public class TriggerTrackBehaviour : MonoBehaviour
     [SerializeField] bool stop;
     [SerializeField] AudioClip customTrack;
 
-    [Header("Beginning")]
-    [SerializeField] bool beginning;
-
     void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (beginning && PlayerPrefs.HasKey(Shortcuts.KEY_BEGUN)) return;  
-        
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+    {        
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
             if (!stop)
             {
-                if (customTrack is null) JukeboxManager.instance.PlayBGM();
+                if (customTrack == null) JukeboxManager.instance.PlayBGM();
                 else JukeboxManager.instance.PlayBGM(customTrack);
             }
             else JukeboxManager.instance.StopBGM();

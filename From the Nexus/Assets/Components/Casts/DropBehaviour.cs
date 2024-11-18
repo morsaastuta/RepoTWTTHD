@@ -15,7 +15,7 @@ public class DropBehaviour : CastBehaviour
     {
         base.OnTriggerEnter2D(collider);
 
-        if (Shortcuts.CollidesWithLayer(collider, "Ground") || Shortcuts.CollidesWithLayer(collider, "Player") || Shortcuts.CollidesWithLayer(collider, "Foe") || Shortcuts.CollidesWithLayer(collider, "Box") || (GetComponent<Rigidbody2D>().linearVelocityY <= 0 && Shortcuts.CollidesWithLayer(collider, "Platform"))) Destroy(gameObject);
+        if (Shortcuts.GetColliderLayer(collider, "Ground") || Shortcuts.GetColliderLayer(collider, "Player") || Shortcuts.GetColliderLayer(collider, "Foe") || Shortcuts.GetColliderLayer(collider, "Box") || (GetComponent<Rigidbody2D>().linearVelocityY <= 0 && Shortcuts.GetColliderLayer(collider, "Platform"))) Destroy(gameObject);
     }
 
     void FixedUpdate()

@@ -76,21 +76,21 @@ public class FoeBehaviour : EntityBehaviour
     {
         base.OnCollisionEnter2D(collision);
 
-        if (Shortcuts.CollidesWithLayer(collision, "Foe")) right = !right;
+        if (Shortcuts.GetCollisionLayer(collision, "Foe")) right = !right;
     }
 
     protected override void OnCollisionStay2D(Collision2D collision)
     {
         base.OnCollisionStay2D(collision);
 
-        if (Shortcuts.CollidesWithLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 0, transform.position);
+        if (Shortcuts.GetCollisionLayer(collision, "Player")) collision.collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 0, transform.position);
     }
 
     protected override void OnTriggerStay2D(Collider2D collider)
     {
         base.OnTriggerStay2D(collider);
 
-        if (Shortcuts.CollidesWithLayer(collider, "Player")) collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 0, transform.position);
+        if (Shortcuts.GetColliderLayer(collider, "Player")) collider.GetComponent<EntityBehaviour>().ReceiveDamage(5, 0, transform.position);
     }
 
     protected void SkipCollision(Collision2D collision)

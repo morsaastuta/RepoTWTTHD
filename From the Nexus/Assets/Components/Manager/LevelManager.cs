@@ -1,35 +1,23 @@
 using Glossary;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     public bool canPause;
 
-    [Header("Global references")]
+    [Header("Stage references")]
     [SerializeField] public int region;
     [SerializeField] public int stage;
     [SerializeField] public PlayerBehaviour player;
+    [SerializeField] public Transform ogPointer;
     [SerializeField] public Transform pointer;
     [SerializeField] GameObject foeSource;
 
-    [Header("Local references")]
+    [Header("Prefab references")]
     [SerializeField] public MenuController menuHUD;
     [SerializeField] public MessageController messageHUD;
-
-    #region INPUT ACTION REFERENCES
-    [Header("Inputs")]
-    [SerializeField] public InputActionReference move;
-    [SerializeField] public InputActionReference jump;
-    [SerializeField] public InputActionReference interact;
-    [SerializeField] public InputActionReference attack;
-    [SerializeField] public InputActionReference react;
-    [SerializeField] public InputActionReference burst;
-    [SerializeField] public InputActionReference pause;
-    [SerializeField] public InputActionReference aim;
-    #endregion
 
     #region MODULES
     [Header("Modules")]
@@ -45,6 +33,8 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        Cursor.visible = false;
     }
 
     void Start()
@@ -68,11 +58,12 @@ public class LevelManager : MonoBehaviour
     public void UploadSM()
     {
         PlayerPrefs.SetFloat(Shortcuts.KEY_SCORE, PlayerPrefs.GetFloat(Shortcuts.KEY_SCORE) + storedSM);
+        ClearSM();
     }
 
-    public void RestartScene()
+    public void RestartStage()
     {
-        Shortcuts.LoadScene(region, stage);
+        Shortcuts.LoadStage(region, stage);
     }
 
     public void SetPause(bool on)
@@ -84,11 +75,15 @@ public class LevelManager : MonoBehaviour
             foreach (FoeBehaviour foe in foeSource.GetComponentsInChildren<FoeBehaviour>()) foeVelOnPause.Add(foe.GetComponent<Rigidbody2D>().linearVelocity);
         }
 
+        JukeboxManager.instance.PlayUI(JukeboxManager.SFX.Pause);
+        Cursor.visible = on;
+        player.ShowHUD(!on);
         player.gameObject.SetActive(!on);
         foeSource.SetActive(!on);
 
         if (!on)
         {
+
             player.GetComponent<Rigidbody2D>().linearVelocity = playerVelOnPause;
 
             foreach (FoeBehaviour foe in foeSource.GetComponentsInChildren<FoeBehaviour>())
@@ -97,7 +92,6 @@ public class LevelManager : MonoBehaviour
                 foeVelOnPause.Remove(foeVelOnPause[0]);
             }
         }
-
     }
 
     public void Cutscene(bool on)
@@ -117,5 +111,21 @@ public class LevelManager : MonoBehaviour
             case Mod.Shield: Instantiate(m_shield, modBase); break;
             case Mod.Cleanse: Instantiate(m_cleanse, modBase); break;
         }
+    }
+
+    public void Death()
+    {
+        ClearSM();
+
+        if (!pointer.Equals(ogPointer)) GameManager.instance.SavePointer(pointer);
+
+        RestartStage();
+    }
+
+    public void PointTo(Transform p, bool overwrite)
+    {
+        player.transform.position = p.position;
+
+        if (overwrite) pointer = p;
     }
 }

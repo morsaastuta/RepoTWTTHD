@@ -8,11 +8,12 @@ public class SwitchBehaviour : MonoBehaviour
     [SerializeField] List<GameObject> branches = new();
     [SerializeField] int branchIdx = 0;
 
-    [Header("Animators")]
+    [Header("References")]
     [SerializeField] Animator switchAnimator;
     [SerializeField] Animator branchAnimator;
     [SerializeField] Animator dataAnimator;
     [SerializeField] Animator interfaceAnimator;
+    [SerializeField] AudioSource sfxSource;
 
     bool on = false;
     bool switching = false;
@@ -41,8 +42,9 @@ public class SwitchBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Connect, false);
             on = true;
             switchAnimator.SetBool("on", true);
             branchAnimator.SetBool("on", true);
@@ -52,11 +54,13 @@ public class SwitchBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (on && !switching && Shortcuts.Pressed(LevelManager.instance.interact)) StartCoroutine(Switch());
+        if (on && !switching && Shortcuts.Pressed(GameManager.instance.interact)) StartCoroutine(Switch());
     }
 
     IEnumerator Switch()
     {
+        JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Branch, false);
+
         // Set next branch index
         if (branchIdx < branches.Count - 1) branchIdx++;
         else branchIdx = 0;
@@ -76,8 +80,9 @@ public class SwitchBehaviour : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
+            if (!sfxSource.isPlaying) JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Disconnect, false);
             on = false;
             switchAnimator.SetBool("on", false);
             branchAnimator.SetBool("on", false);

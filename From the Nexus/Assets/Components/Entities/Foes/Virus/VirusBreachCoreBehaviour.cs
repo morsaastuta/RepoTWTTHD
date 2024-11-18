@@ -15,8 +15,8 @@ public class VirusBreachCoreBehaviour : FoeBehaviour
     [SerializeField] GameObject coreBody;
     [SerializeField] Animator bodyAnimator;
     
-    float rotationSpeedOff = 50f;
-    float rotationSpeedOn = 200f;
+    float rotationSpeedOff = 60f;
+    float rotationSpeedOn = 300f;
 
     protected override void Start()
     {
@@ -35,6 +35,8 @@ public class VirusBreachCoreBehaviour : FoeBehaviour
 
             if (targetDetected)
             {
+                if (!sfxSource.isPlaying) JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Call, true);
+
                 foreach (VirusPolyhedralBehaviour minion in minions) minion.OverrideTarget(true, targetPos);
 
                 coreBody.transform.Rotate(0, 0, -Time.deltaTime * rotationSpeedOn, Space.Self);
@@ -47,6 +49,8 @@ public class VirusBreachCoreBehaviour : FoeBehaviour
             }
             else
             {
+                if (sfxSource.isPlaying) sfxSource.Stop();
+
                 foreach (VirusPolyhedralBehaviour minion in minions) minion.OverrideTarget(false, targetPos);
 
                 coreBody.transform.Rotate(0, 0, -Time.deltaTime * rotationSpeedOff, Space.Self);
