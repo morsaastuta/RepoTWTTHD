@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -5,7 +6,7 @@ using UnityEngine.SceneManagement;
 public static class Shortcuts
 {
     #region VARIABLES
-    public const string KEY_BEGUN = "begun";
+    public const string KEY_PROGRESS = "progress";
     public const string KEY_SCORE = "score";
     public const string KEY_LEVEL = "level";
     public const string KEY_MOD_PROJECTILE = "m_projectile";
@@ -16,20 +17,23 @@ public static class Shortcuts
     #region METHODS
     public static void GoToMenu()
     {
+        GameManager.instance.ClearPointer();
+        JukeboxManager.instance.StopBGM();
         SceneManager.LoadScene("MainMenu");
     }
 
-    public static void LoadScene(int region, int stage)
+    public static void LoadStage(int region, int stage)
     {
+        JukeboxManager.instance.StopBGM();
         SceneManager.LoadScene(region.ToString("00") + "." + stage.ToString("00"));
     }
 
-    public static bool CollidesWithLayer(Collision2D collision, string layerName)
+    public static bool GetCollisionLayer(Collision2D collision, string layerName)
     {
         return collision.collider.gameObject.layer == LayerMask.NameToLayer(layerName);
     }
 
-    public static bool CollidesWithLayer(Collider2D collider, string layerName)
+    public static bool GetColliderLayer(Collider2D collider, string layerName)
     {
         return collider.gameObject.layer == LayerMask.NameToLayer(layerName);
     }
@@ -79,6 +83,24 @@ public static class Shortcuts
     public static void NullifyMovement(EntityBehaviour entity)
     {
         entity.GetComponent<Rigidbody2D>().linearVelocityX = 0;
+    }
+
+    public static IEnumerator DestroyAudibleObject(GameObject obj)
+    {
+        if (obj.GetComponent<AudioSource>() && obj.GetComponent<AudioSource>().isPlaying)
+        {
+            // Full deactivation
+            if (obj.GetComponent<SpriteRenderer>()) obj.GetComponent<SpriteRenderer>().enabled = false;
+            foreach (SpriteRenderer sprite in obj.GetComponentsInChildren<SpriteRenderer>()) sprite.enabled = false;
+            if (obj.GetComponent<Collider2D>()) obj.GetComponent<Collider2D>().enabled = false;
+            foreach (Collider2D collider in obj.GetComponentsInChildren<Collider2D>()) collider.enabled = false;
+
+            obj.GetComponent<AudioSource>().loop = false;
+
+            yield return new WaitUntil(() => !obj.GetComponent<AudioSource>().isPlaying);
+        }
+
+        Object.Destroy(obj);
     }
     #endregion
 }

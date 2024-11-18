@@ -14,6 +14,6 @@ public class CleanseBehaviour : CastBehaviour
     void FixedUpdate()
     {
         timer--;
-        if (timer <= 0) Destroy(gameObject);
+        if (timer <= 0) StartCoroutine(Shortcuts.DestroyAudibleObject(gameObject));
     }
 }

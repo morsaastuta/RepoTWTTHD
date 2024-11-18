@@ -6,6 +6,7 @@ public class PlayerBehaviour : EntityBehaviour
     // Attributes
     int playerID;
     [SerializeField] GameObject hud;
+    GameObject hudSelf;
     [SerializeField] GameObject modBase;
 
     // Movement
@@ -21,12 +22,14 @@ public class PlayerBehaviour : EntityBehaviour
         entityCode = new Avii();
 
         // HUD setup
-        GameObject newHUD = Instantiate(hud, LevelManager.instance.transform);
-        newHUD.transform.localPosition = new(-Screen.width / 2 + playerID * Screen.width / 5 - 256, Screen.height / 2 - 128);
-        newHUD.GetComponent<HUDController>().SetPlayer(this);
+        hudSelf = Instantiate(hud, LevelManager.instance.transform);
+        hudSelf.transform.localPosition = new(-Screen.width / 2 + playerID * Screen.width / 5 - 256, Screen.height / 2 - 128);
+        hudSelf.GetComponent<HUDController>().SetPlayer(this);
 
         // Start pos
-        transform.position = LevelManager.instance.pointer.position;
+        LevelManager.instance.PointTo(LevelManager.instance.pointer, false);
+
+        ShowHUD(true);
     }
 
     protected override void Update()
@@ -36,27 +39,15 @@ public class PlayerBehaviour : EntityBehaviour
         if (!entityCode.HasState(State.Cutscene) && !entityCode.HasState(State.Disconnected))
         {
             // Movement input
-            directionX = LevelManager.instance.move.action.ReadValue<Vector2>().x;
+            directionX = GameManager.instance.move.action.ReadValue<Vector2>().x;
 
             // Jump input
-            if (Shortcuts.Pressed(LevelManager.instance.jump)) ActionJump();
+            if (Shortcuts.Pressed(GameManager.instance.jump)) ActionJump();
         }
         
         directionY = body.linearVelocityY;
 
         AnimatorSetters();
-    }
-
-    protected override void OnTriggerStay2D(Collider2D collider)
-    {
-        base.OnTriggerStay2D(collider);
-
-        if (Shortcuts.CollidesWithLayer(collider, "Outbounds"))
-        {
-            transform.position = LevelManager.instance.pointer.position;
-            body.linearVelocity = new Vector2(0, 0);
-            entityCode.AllocatePM(5);
-        }
     }
 
     void AnimatorSetters()
@@ -92,6 +83,7 @@ public class PlayerBehaviour : EntityBehaviour
 
     public void EnterInteraction(bool enter)
     {
+        LevelManager.instance.canPause = !enter;
         if (enter)
         {
             entityCode.AddState(State.Disconnected);
@@ -104,11 +96,17 @@ public class PlayerBehaviour : EntityBehaviour
         }
     }
 
+    public void ShowHUD(bool on)
+    {
+        hudSelf.SetActive(on);
+    }
+
     #region Actions
     void ActionJump()
     {
         if (grounded)
         {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Jump, false);
             grounded = false;
             body.linearVelocityY = entityCode.jumpPower;
         }

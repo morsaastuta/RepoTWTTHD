@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7389907741650948441}
   - component: {fileID: 2652331011313867692}
   - component: {fileID: 1966791447102796047}
-  - component: {fileID: 6666276381739155403}
+  - component: {fileID: 2912682190946615668}
   - component: {fileID: 8952015226885073450}
   m_Layer: 0
   m_Name: Jukebox
@@ -49,29 +49,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 1966791447102796047}
   menu_f: {fileID: 8300000, guid: 54385ea2794f3f741abfdcb23f7bb871, type: 3}
-  menu_s: {fileID: 8300000, guid: ffb4000a8601f2845916253722c503c3, type: 3}
+  menu_s: {fileID: 8300000, guid: d0d4f0e523187254e834fa930f45ee81, type: 3}
+  menu_l: {fileID: 8300000, guid: ffb4000a8601f2845916253722c503c3, type: 3}
   r00s00_f: {fileID: 8300000, guid: 997d9f1c9f9a23740873a626474ce35a, type: 3}
   r00s00_s: {fileID: 8300000, guid: cbb225ec342c41f4f915636fcdd2a61e, type: 3}
   r01s01: {fileID: 8300000, guid: ef22c2f93f3e97e44b05f3637f5365a4, type: 3}
   r01s02: {fileID: 8300000, guid: ef22c2f93f3e97e44b05f3637f5365a4, type: 3}
   r01s03: {fileID: 8300000, guid: ef22c2f93f3e97e44b05f3637f5365a4, type: 3}
-  sfx: {fileID: 6666276381739155403}
-  select: {fileID: 0}
-  hover: {fileID: 0}
-  pause: {fileID: 0}
-  jump: {fileID: 0}
+  sfxUI: {fileID: 2912682190946615668}
+  select: {fileID: 8300000, guid: fc737eb889ce345fdbba19060c241873, type: 3}
+  enterHover: {fileID: 8300000, guid: 539ab5c659bd042f8983468eede6a741, type: 3}
+  exitHover: {fileID: 8300000, guid: 42f9dcb28aeaf43a6a8d1b0fedfa9618, type: 3}
+  pause: {fileID: 8300000, guid: f234f80b60080472a953fb3eb880ba8c, type: 3}
+  jump: {fileID: 8300000, guid: 759dcd07e8ea51a41898b7df918b51e2, type: 3}
+  hit: {fileID: 8300000, guid: 6902a7db3efb045caa9f8fe9951fb644, type: 3}
   clash: {fileID: 0}
+  kill: {fileID: 0}
   respawn: {fileID: 0}
-  connect: {fileID: 0}
-  interact: {fileID: 0}
-  collect: {fileID: 0}
-  destroy: {fileID: 0}
-  open: {fileID: 0}
-  close: {fileID: 0}
-  hit: {fileID: 0}
-  die: {fileID: 0}
+  connect: {fileID: 8300000, guid: 5344b2143ae44491495fbf282c55fa76, type: 3}
+  disconnect: {fileID: 8300000, guid: 01c22bdafcac5411c8a20ccac365a7e9, type: 3}
+  read: {fileID: 8300000, guid: ccc64f85edeb642888371b8acdeabf1f, type: 3}
+  save: {fileID: 8300000, guid: f32a37d07743f4995ab35589cd46c4e3, type: 3}
+  open: {fileID: 8300000, guid: 0c621901caf7443bb9dae7bb788aff88, type: 3}
+  close: {fileID: 8300000, guid: 2aa8b0c5c7e3a44c3a281481c92baa8e, type: 3}
+  box: {fileID: 8300000, guid: 0c621901caf7443bb9dae7bb788aff88, type: 3}
+  branch: {fileID: 8300000, guid: 2aa8b0c5c7e3a44c3a281481c92baa8e, type: 3}
+  chip: {fileID: 8300000, guid: 3387f19865df34cb5ad51eded56ee628, type: 3}
+  shoot: {fileID: 8300000, guid: 76976d72ae39748878e5a2f279d360ef, type: 3}
+  shield: {fileID: 8300000, guid: 4e8e7220d917d4d91b3596b010b64e33, type: 3}
+  burst: {fileID: 8300000, guid: 72cd3e9bc29af4c57a62e91883166b7b, type: 3}
   drop: {fileID: 0}
-  shoot: {fileID: 0}
+  detect: {fileID: 8300000, guid: 87abb7d59ee01497b9bbee926139c436, type: 3}
+  call: {fileID: 8300000, guid: 1ed84389bc70c4afab4cf4e773ef8914, type: 3}
 --- !u!82 &1966791447102796047
 AudioSource:
   m_ObjectHideFlags: 0
@@ -85,7 +94,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -169,7 +178,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &6666276381739155403
+--- !u!82 &2912682190946615668
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -15,7 +15,7 @@ public class DetectorBehaviour : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
             targetPos = collider.transform.position + new Vector3(0, 1.775f, 0);
             detected = true;
@@ -24,6 +24,6 @@ public class DetectorBehaviour : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player")) detected = false;
+        if (Shortcuts.GetColliderLayer(collider, "Player")) detected = false;
     }
 }

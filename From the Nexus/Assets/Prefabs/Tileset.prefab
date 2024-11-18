@@ -694,9 +694,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1195293047
-  m_SortingLayer: -5
-  m_SortingOrder: 1
+  m_SortingLayerID: -221206335
+  m_SortingLayer: -6
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -742,11 +742,11 @@ Transform:
   - {fileID: 5291110481263107075}
   - {fileID: 7380197106383896162}
   - {fileID: 3049956463451920461}
-  - {fileID: 3979720094776782344}
   - {fileID: 8138539312411621364}
   - {fileID: 8485196835047913826}
   - {fileID: 5405871288749714636}
   - {fileID: 2272129965556487349}
+  - {fileID: 3979720094776782344}
   - {fileID: 6269828609998565192}
   - {fileID: 1042359762408208188}
   m_Father: {fileID: 0}

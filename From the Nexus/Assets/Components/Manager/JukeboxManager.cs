@@ -11,6 +11,7 @@ public class JukeboxManager : MonoBehaviour
 
     [SerializeField] AudioClip menu_f;
     [SerializeField] AudioClip menu_s;
+    [SerializeField] AudioClip menu_l;
 
     [SerializeField] AudioClip r00s00_f;
     [SerializeField] AudioClip r00s00_s;
@@ -22,49 +23,43 @@ public class JukeboxManager : MonoBehaviour
 
     #region SFX FILES
     [Header("SFX")]
-    [SerializeField] AudioSource sfx;
+    [SerializeField] AudioSource sfxUI;
 
     [SerializeField] AudioClip select;
-    [SerializeField] AudioClip hover;
+    [SerializeField] AudioClip enterHover;
+    [SerializeField] AudioClip exitHover;
+
     [SerializeField] AudioClip pause;
 
     [SerializeField] AudioClip jump;
+    [SerializeField] AudioClip hit;
     [SerializeField] AudioClip clash;
+    [SerializeField] AudioClip kill;
     [SerializeField] AudioClip respawn;
 
     [SerializeField] AudioClip connect;
-    [SerializeField] AudioClip interact;
-    [SerializeField] AudioClip collect;
-    [SerializeField] AudioClip destroy;
+    [SerializeField] AudioClip disconnect;
+
+    [SerializeField] AudioClip read;
+    [SerializeField] AudioClip save;
     [SerializeField] AudioClip open;
     [SerializeField] AudioClip close;
 
-    [SerializeField] AudioClip hit;
-    [SerializeField] AudioClip die;
-    [SerializeField] AudioClip drop;
+    [SerializeField] AudioClip box;
+    [SerializeField] AudioClip branch;
+
+    [SerializeField] AudioClip chip;
 
     [SerializeField] AudioClip shoot;
+    [SerializeField] AudioClip shield;
+    [SerializeField] AudioClip burst;
+
+    [SerializeField] AudioClip drop;
+    [SerializeField] AudioClip detect;
+    [SerializeField] AudioClip call;
     #endregion
 
-    public enum SFX
-    {
-        // UI
-        Hover, Select, Pause,
-
-        // Player
-        Jump, Damage, Respawn,
-
-        // Interactable
-        Connect, Disconnect, Interact, Collect, Destroy, Open, Close,
-
-        // Foe
-        Hit, Die, Drop,
-
-        // Modules
-        Shoot,
-    }
-
-    void Awake()
+    protected virtual void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -74,14 +69,30 @@ public class JukeboxManager : MonoBehaviour
         else instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    void OnEnable()
+
+    protected virtual void OnEnable()
     {
         SceneManager.sceneLoaded += Setup;
     }
 
-    void OnDisable()
+    protected virtual void OnDisable()
     {
         SceneManager.sceneLoaded -= Setup;
+    }
+
+    public enum SFX
+    {
+        // UI
+        EnterHover, ExitHover, Select, Pause,
+
+        // Entity
+        Jump, Hit, Clash, Kill, Respawn,
+
+        // Interactable
+        Connect, Disconnect, Read, Save, Box, Branch, Collect, Open, Close,
+
+        // Cast
+        Shoot, Shield, Burst, Drop, Detect, Call
     }
 
     void Setup(Scene scene, LoadSceneMode mode)
@@ -94,8 +105,12 @@ public class JukeboxManager : MonoBehaviour
     {
         if (LevelManager.instance == null)
         {
-            if (!PlayerPrefs.HasKey(Shortcuts.KEY_BEGUN)) PlayBGM(menu_f);
-            else PlayBGM(menu_s);
+            switch (PlayerPrefs.GetInt(Shortcuts.KEY_PROGRESS))
+            {
+                case 0: PlayBGM(menu_f); break;
+                case 1: PlayBGM(menu_s); break;
+                case 2: PlayBGM(menu_l); break;
+            }
         }
         else
         {
@@ -105,7 +120,7 @@ public class JukeboxManager : MonoBehaviour
                     // 00 - THE NEXUS
                     switch (LevelManager.instance.stage)
                     {
-                        case 0: if (PlayerPrefs.HasKey(Shortcuts.KEY_BEGUN)) PlayBGM(r00s00_s); break;
+                        case 0: if (PlayerPrefs.GetInt(Shortcuts.KEY_PROGRESS) >= 1) PlayBGM(r00s00_s); break;
                     }
                     break;
 
@@ -124,8 +139,11 @@ public class JukeboxManager : MonoBehaviour
 
     public void PlayBGM(AudioClip track)
     {
-        bgm.clip = track;
-        bgm.Play();
+        if (bgm.clip != track || !bgm.isPlaying)
+        {
+            bgm.clip = track;
+            bgm.Play();
+        }
     }
 
     public void StopBGM()
@@ -133,36 +151,49 @@ public class JukeboxManager : MonoBehaviour
         bgm.Stop();
     }
 
-    public void PlaySFX(SFX file)
+    public void PlaySFX(AudioSource source, SFX file, bool l)
     {
         switch (file)
         {
             // UI
-            case SFX.Hover: break;
-            case SFX.Select: break;
-            case SFX.Pause: break;
+            case SFX.EnterHover: source.clip = enterHover; break;
+            case SFX.ExitHover: source.clip = exitHover; break;
+            case SFX.Select: source.clip = select; break;
+            case SFX.Pause: source.clip = pause; break;
 
             // Player
-            case SFX.Jump: break;
-            case SFX.Damage: break;
-            case SFX.Respawn: break;
+            case SFX.Jump: source.clip = jump; break;
+            case SFX.Hit: source.clip = hit; break;
+            case SFX.Clash: source.clip = clash; break;
+            case SFX.Kill: source.clip = kill; break;
+            case SFX.Respawn: source.clip = respawn; break;
 
-            // Interactable
-            case SFX.Connect: break;
-            case SFX.Disconnect: break;
-            case SFX.Interact: break;
-            case SFX.Collect: break;
-            case SFX.Destroy: break;
-            case SFX.Open: break;
-            case SFX.Close: break;
+            // Interactablesource.clip = connect;
+            case SFX.Connect: source.clip = connect; break;
+            case SFX.Disconnect: source.clip = disconnect; break;
+            case SFX.Read: source.clip = read; break;
+            case SFX.Save: source.clip = save; break;
+            case SFX.Open: source.clip = open; break;
+            case SFX.Close: source.clip = close; break;
+            case SFX.Box: source.clip = box; break;
+            case SFX.Branch: source.clip = branch; break;
+            case SFX.Collect: source.clip = chip; break;
 
-            // Foe
-            case SFX.Hit: break;
-            case SFX.Die: break;
-            case SFX.Drop: break;
-
-            // Modules
-            case SFX.Shoot: break;
+            // Abilities
+            case SFX.Shoot: source.clip = shoot; break;
+            case SFX.Shield: source.clip = shield; break;
+            case SFX.Burst: source.clip = burst; break;
+            case SFX.Drop: source.clip = drop; break;
+            case SFX.Detect: source.clip = detect; break;
+            case SFX.Call: source.clip = call; break;
         }
+
+        source.loop = l;
+        source.Play();
+    }
+
+    public void PlayUI(SFX sfx)
+    {
+        PlaySFX(sfxUI, sfx, false);
     }
 }

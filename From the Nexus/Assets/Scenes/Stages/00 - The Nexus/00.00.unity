@@ -21514,6 +21514,10 @@ PrefabInstance:
       propertyPath: foeSource
       value: 
       objectReference: {fileID: 2141263470}
+    - target: {fileID: 4025172107918653930, guid: 7e40ca6974af9f64196feff411bb6e57, type: 3}
+      propertyPath: ogPointer
+      value: 
+      objectReference: {fileID: 1002912810}
     - target: {fileID: 5105183351001037481, guid: 7e40ca6974af9f64196feff411bb6e57, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -29642,6 +29646,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5185082919958162954, guid: efa6e05368cb78549b412717a77f28f5, type: 3}
   m_PrefabInstance: {fileID: 1804220112}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1569461557
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196162988270878525, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161721835985757444, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
+      propertyPath: m_Name
+      value: Game Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5104fc0ac0d8ded42833183e049f351b, type: 3}
 --- !u!1001 &1577458890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29904,7 +29965,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3724402903319063910, guid: 5d1f94b454df43e459f137b5d1ba6a85, type: 3}
       propertyPath: content.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3724402903319063910, guid: 5d1f94b454df43e459f137b5d1ba6a85, type: 3}
       propertyPath: 'content.Array.data[0]'
@@ -29912,11 +29973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724402903319063910, guid: 5d1f94b454df43e459f137b5d1ba6a85, type: 3}
       propertyPath: 'content.Array.data[1]'
-      value: Please make use of the Bullet Module. You can find it right ahead.
+      value: Please make use of the PROJECTILE module. You can find it right ahead.
       objectReference: {fileID: 0}
     - target: {fileID: 3724402903319063910, guid: 5d1f94b454df43e459f137b5d1ba6a85, type: 3}
       propertyPath: 'content.Array.data[2]'
-      value: Once attached, use [AIM] to point and [ATTACK] to shoot.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7130911003221824349, guid: 5d1f94b454df43e459f137b5d1ba6a85, type: 3}
       propertyPath: m_Name
@@ -74129,8 +74190,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 999124665}
+  - {fileID: 1569461557}
   - {fileID: 3971448823143382847}
+  - {fileID: 999124665}
   - {fileID: 188839971}
   - {fileID: 185111807}
   - {fileID: 2141263471}

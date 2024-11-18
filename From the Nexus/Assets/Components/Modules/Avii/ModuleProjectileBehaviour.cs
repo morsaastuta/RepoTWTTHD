@@ -8,7 +8,7 @@ public class ModuleProjectileBehaviour : ModuleBehaviour
 
     void Update()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.attack)) ActionShoot();
+        if (Shortcuts.Pressed(GameManager.instance.attack)) ActionShoot();
     }
 
     void ActionShoot()

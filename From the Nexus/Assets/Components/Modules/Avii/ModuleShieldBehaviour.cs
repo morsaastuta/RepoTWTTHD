@@ -11,7 +11,7 @@ public class ModuleShieldBehaviour : ModuleBehaviour
 
     void Update()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.react)) ActionShield();
+        if (Shortcuts.Pressed(GameManager.instance.react) && !user.entityCode.HasState(State.Disconnected)) ActionShield();
     }
 
     void FixedUpdate()
@@ -22,7 +22,8 @@ public class ModuleShieldBehaviour : ModuleBehaviour
             if (timer <= 0)
             {
                 shield.SetBool("on", false);
-                GetComponentInParent<PlayerBehaviour>().entityCode.RemoveState(State.Disconnected);
+                user.entityCode.RemoveState(State.Shielded);
+                user.entityCode.RemoveState(State.Disconnected);
             }
         }
     }
@@ -33,7 +34,11 @@ public class ModuleShieldBehaviour : ModuleBehaviour
         {
             user.entityCode.AllocateVM(8f);
             Shortcuts.NullifyMovement(GetComponentInParent<PlayerBehaviour>());
-            GetComponentInParent<PlayerBehaviour>().entityCode.AddState(State.Disconnected);
+            user.entityCode.AddState(State.Shielded);
+            user.entityCode.AddState(State.Disconnected);
+
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Shield, false);
+
             shield.SetBool("on", true);
             timer = timerMax;
         }

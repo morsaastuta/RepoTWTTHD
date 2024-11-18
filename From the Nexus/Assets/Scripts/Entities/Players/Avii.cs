@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using System.Collections.Generic;
-using UnityEngine;
 using Glossary;
 
 public class Avii : Player

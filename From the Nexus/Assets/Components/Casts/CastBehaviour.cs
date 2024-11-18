@@ -21,11 +21,11 @@ public abstract class CastBehaviour : MonoBehaviour
 
     virtual protected void OnTriggerEnter2D(Collider2D collider)
     {
-        if (target.Equals(typeof(Player)) && Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (target.Equals(typeof(Player)) && Shortcuts.GetColliderLayer(collider, "Player"))
         {
             Combat.Inflict(this, source, collider.GetComponent<EntityBehaviour>());
         }
-        else if (target.Equals(typeof(Foe)) && Shortcuts.CollidesWithLayer(collider, "Foe"))
+        else if (target.Equals(typeof(Foe)) && Shortcuts.GetColliderLayer(collider, "Foe"))
         {
             Combat.Inflict(this, source, collider.GetComponent<EntityBehaviour>());
         }

@@ -10,6 +10,7 @@ public class SignpostBehaviour : MonoBehaviour
     [Header("References")]
     [SerializeField] Animator signAnimator;
     [SerializeField] Animator textAnimator;
+    [SerializeField] AudioSource sfxSource;
 
     [Header("Resources")]
     [SerializeField] AnimationClip checkClip;
@@ -25,13 +26,14 @@ public class SignpostBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (on && Shortcuts.Pressed(LevelManager.instance.interact) && !LevelManager.instance.messageHUD.Active()) LevelManager.instance.messageHUD.ReceiveMessage(content);
+        if (on && Shortcuts.Pressed(GameManager.instance.interact) && !LevelManager.instance.messageHUD.Active()) LevelManager.instance.messageHUD.ReceiveMessage(content);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Connect, false);
             player = collider;
             on = true;
             signAnimator.SetBool("on", true);
@@ -41,8 +43,9 @@ public class SignpostBehaviour : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (Shortcuts.CollidesWithLayer(collider, "Player"))
+        if (Shortcuts.GetColliderLayer(collider, "Player"))
         {
+            if (!sfxSource.isPlaying) JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Disconnect, false);
             player = collider;
             on = false;
             signAnimator.SetBool("on", false);

@@ -7,7 +7,7 @@ public class ModuleCleanseBehaviour : ModuleBehaviour
 
     void Update()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.burst)) ActionCleanse();
+        if (Shortcuts.Pressed(GameManager.instance.burst)) ActionCleanse();
     }
 
     void ActionCleanse()

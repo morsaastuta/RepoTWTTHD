@@ -12,9 +12,9 @@ public class AimBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!LevelManager.instance.aim.action.ReadValue<Vector2>().Equals(Vector2.zero))
+        if (!GameManager.instance.aim.action.ReadValue<Vector2>().Equals(Vector2.zero))
         {
-            mousePosition = LevelManager.instance.aim.action.ReadValue<Vector2>();
+            mousePosition = GameManager.instance.aim.action.ReadValue<Vector2>();
         }
 
         foreach (InputDevice device in GetComponentInParent<PlayerInput>().devices)

@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,11 +42,11 @@ public class LoadSceneController : MonoBehaviour
 
     public void LoadScene00(int level)
     {
-        Shortcuts.LoadScene(0, level);
+        Shortcuts.LoadStage(0, level);
     }
 
     public void LoadScene01(int level)
     {
-        Shortcuts.LoadScene(1, level);
+        Shortcuts.LoadStage(1, level);
     }
 }

@@ -12,10 +12,11 @@ public class UIButtonController : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] string content = "";
     [SerializeField] float fontSize = 28;
 
-    [Header("Resources")]
+    [Header("References")]
     [SerializeField] Sprite off;
     [SerializeField] Sprite hover;
     [SerializeField] Sprite click;
+    [SerializeField] AudioSource sfxSource;
 
     Button button;
 
@@ -29,17 +30,30 @@ public class UIButtonController : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (button.interactable) GetComponent<Image>().sprite = click;
+        if (button.interactable)
+        {
+            JukeboxManager.instance.PlayUI(JukeboxManager.SFX.Select);
+            GetComponent<Image>().sprite = click;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (button.interactable) GetComponent<Image>().sprite = hover;
+        if (button.interactable)
+        {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.EnterHover, false);
+            GetComponent<Image>().sprite = hover;
+        }
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (button.interactable) GetComponent<Image>().sprite = off;
+        if (button.interactable)
+        {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.ExitHover, false);
+            GetComponent<Image>().sprite = off;
+        }
     }
 
     void OnEnable()

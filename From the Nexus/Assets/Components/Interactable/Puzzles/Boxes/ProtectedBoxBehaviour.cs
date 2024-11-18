@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class ProtectedBoxBehaviour : MonoBehaviour
 {
-    [SerializeField] Animator box;
-    [SerializeField] Animator shield;
-    [SerializeField] WeakSideBehaviour weakSide;
-
+    [Header("Stats")]
     [SerializeField] public float durability = 1;
     [SerializeField] int height = 1;
     [SerializeField] int width = 1;
+
+    [Header("References")]
+    [SerializeField] Animator box;
+    [SerializeField] Animator shield;
+    [SerializeField] WeakSideBehaviour weakSide;
+    [SerializeField] AudioSource sfxSource;
 
     int whiteTimerMax = 16;
     int whiteTimer = 0;
@@ -29,13 +32,19 @@ public class ProtectedBoxBehaviour : MonoBehaviour
         if (whiteTimer > 0)
         {
             whiteTimer--;
-            if (whiteTimer <= 0) GetComponent<SpriteRenderer>().color = Color.white;
+            if (durability > 0 && whiteTimer <= 0) GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
     public void Damage()
     {
         whiteTimer = whiteTimerMax;
-        if (durability <= 0) Destroy(gameObject);
+
+        if (durability <= 0)
+        {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Box, false);
+            StartCoroutine(Shortcuts.DestroyAudibleObject(gameObject));
+        }
+        else JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Hit, false);
     }
 }

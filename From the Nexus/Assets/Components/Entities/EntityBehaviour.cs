@@ -11,22 +11,28 @@ public class EntityBehaviour : MonoBehaviour
 
     // Physics
     protected Rigidbody2D body;
+    protected Collider2D bounds;
     protected float directionX;
     protected float directionY;
     public bool grounded = false;
     protected Vector3 lastPos = new();
-    protected float flinchTimerMax = 120;
+    protected float flinchTimerMax = 80;
     protected float flinchTimer = 0;
 
     // Projection
     protected List<SpriteRenderer> projections = new();
     protected Animator animator;
 
+    // Audio
+    protected AudioSource sfxSource;
+
     protected virtual void Start()
     {
-        body = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
-        projections.AddRange(GetComponentsInChildren<SpriteRenderer>());
+        if (GetComponent<AudioSource>()) sfxSource = GetComponent<AudioSource>();
+        if (GetComponent<Rigidbody2D>()) body = GetComponent<Rigidbody2D>();
+        if (GetComponent<Collider2D>()) bounds = GetComponent<Collider2D>();
+        if (GetComponentInChildren<Animator>()) animator = GetComponentInChildren<Animator>();
+        if (GetComponentInChildren<SpriteRenderer>()) projections.AddRange(GetComponentsInChildren<SpriteRenderer>());
     }
 
     protected virtual void Update()
@@ -38,15 +44,9 @@ public class EntityBehaviour : MonoBehaviour
             LevelManager.instance.StoreSM(entityCode.sm);
 
             // If FOE
-            if (entityCode.GetType().BaseType.Equals(typeof(Foe))) Destroy(gameObject);
+            if (entityCode.GetType().BaseType.Equals(typeof(Foe))) StartCoroutine(Shortcuts.DestroyAudibleObject(gameObject));
             // If PLAYER
-            else
-            {
-                LevelManager.instance.ClearSM();
-                transform.position = LevelManager.instance.pointer.position;
-                body.linearVelocity = new(0, 0);
-                entityCode.ClearMemory();
-            }
+            else LevelManager.instance.Death();
         }
 
         if (!entityCode.HasState(State.Disconnected) && entityCode.AllocatedVM()) entityCode.ClearVM(Time.deltaTime * 1f);
@@ -63,11 +63,11 @@ public class EntityBehaviour : MonoBehaviour
         {
             flinchTimer--;
 
-            if (flinchTimer % 6 == 0)
+            if (flinchTimer % 4 == 0)
             {
                 foreach (SpriteRenderer projection in projections)
                 {
-                    if (flinchTimer % 12 == 0) projection.color = Color.white;
+                    if (flinchTimer % 8 == 0) projection.color = Color.white;
                     else projection.color = new(0, 0, 0, 0);
                 }
             }
@@ -127,12 +127,24 @@ public class EntityBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D collider)
     {
+        if (Shortcuts.GetColliderLayer(collider, "Outbounds"))
+        {
+            if (Shortcuts.GetColliderLayer(bounds, "Foe")) StartCoroutine(Shortcuts.DestroyAudibleObject(gameObject));
+            else if (Shortcuts.GetColliderLayer(bounds, "Player"))
+            {
+                transform.position = LevelManager.instance.pointer.position;
+                body.linearVelocity = new Vector2(0, 0);
+                ReceiveDamage(5, 0, transform.position);
+            }
+        }
     }
 
     public virtual void ReceiveDamage(float p, float v, Vector2 pos)
     {
-        if (!entityCode.HasState(State.Cutscene) && flinchTimer <= 0)
+        if (!entityCode.HasState(State.Shielded) && !entityCode.HasState(State.Cutscene) && flinchTimer <= 0)
         {
+            JukeboxManager.instance.PlaySFX(sfxSource, JukeboxManager.SFX.Hit, false);
+
             // Allocate memory
             entityCode.AllocatePM(p);
             entityCode.AllocateVM(v);

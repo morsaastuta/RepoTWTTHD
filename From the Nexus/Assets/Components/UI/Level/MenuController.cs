@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MenuController : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Shortcuts.Pressed(LevelManager.instance.pause) && LevelManager.instance.canPause)
+        if (Shortcuts.Pressed(GameManager.instance.pause) && LevelManager.instance.canPause)
         {
             if (!pausePane.activeInHierarchy && !guidePane.activeInHierarchy) Open();
             else if (!guidePane.activeInHierarchy) Close();
@@ -29,7 +28,7 @@ public class MenuController : MonoBehaviour
 
     public void Restart()
     {
-        LevelManager.instance.RestartScene();
+        LevelManager.instance.RestartStage();
     }
 
     public void Guide(bool on)
